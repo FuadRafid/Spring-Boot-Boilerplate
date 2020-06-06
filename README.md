@@ -12,9 +12,6 @@ The REST endpoints available for this project are:
 
 For more info about request methods and sub-routes, check the Swagger URL below.
 
-### Exception Handling ###
-The `exception` package has all needed classes for Exception Handling. The `ServiceException` class is the only `Exception` that is thrown in the application, along with a code from `ExceptionCode` enum. This enum value is used in `ExceptionResponseFactory` to create a response for the error that occurs. 
-
 ### Logging ###
 Logging and log levels are controlled by the `logback-spring.xml` files.
 
