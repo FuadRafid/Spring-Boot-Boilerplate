@@ -15,17 +15,17 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class MathRequestDtoTest {
+class MathRequestDtoTest {
     private Validator validator;
 
     @BeforeAll
-    public void setUp() {
+    void setUp() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
     @Test
-    public void testCalculationRequestDto_shouldBeInvalid_givenBlankStringInputs() {
+    void testCalculationRequestDto_shouldBeInvalid_givenBlankStringInputs() {
         MathRequestDto mathRequestDto = new MathRequestDto();
         mathRequestDto.setFirstNumber("");
         mathRequestDto.setSecondNumber("");
@@ -44,7 +44,7 @@ public class MathRequestDtoTest {
     }
 
     @Test
-    public void test_NotNumberValidator_shouldBeInvalid_givenNullInputs() {
+    void test_NotNumberValidator_shouldBeInvalid_givenNullInputs() {
         MathRequestDto mathRequestDto = new MathRequestDto();
         mathRequestDto.setFirstNumber(null);
         mathRequestDto.setSecondNumber(null);
@@ -63,7 +63,7 @@ public class MathRequestDtoTest {
     }
 
     @Test
-    public void test_NotNumberValidator_shouldBeValid_givenNonBlankStringInputs() {
+    void test_NotNumberValidator_shouldBeValid_givenNonBlankStringInputs() {
         MathRequestDto mathRequestDto = new MathRequestDto();
         mathRequestDto.setFirstNumber("3");
         mathRequestDto.setSecondNumber("abc");

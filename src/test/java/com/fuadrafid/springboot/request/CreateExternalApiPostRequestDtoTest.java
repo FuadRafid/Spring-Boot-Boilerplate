@@ -19,13 +19,13 @@ class CreateExternalApiEmployeeRequestDtoTest {
     private Validator validator;
 
     @BeforeAll
-    public void setUp() {
+    void setUp() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
     @Test
-    public void testCalculationRequestDto_shouldBeInvalid_givenBlankStringAndZeroInputs() {
+    void testCalculationRequestDto_shouldBeInvalid_givenBlankStringAndZeroInputs() {
         CreateExternalApiEmployeeDto requestDto = new CreateExternalApiEmployeeDto();
         requestDto.setSalary(0);
         requestDto.setAge(0);
@@ -46,7 +46,7 @@ class CreateExternalApiEmployeeRequestDtoTest {
     }
 
     @Test
-    public void testCalculationRequestDto_shouldBeInvalid_givenNullStringAndNegativeInputs() {
+    void testCalculationRequestDto_shouldBeInvalid_givenNullStringAndNegativeInputs() {
         CreateExternalApiEmployeeDto requestDto = new CreateExternalApiEmployeeDto();
         requestDto.setSalary(-1);
         requestDto.setAge(-1);
@@ -66,7 +66,7 @@ class CreateExternalApiEmployeeRequestDtoTest {
     }
 
     @Test
-    public void testCalculationRequestDto_shouldBeValid_givenValidnputs() {
+    void testCalculationRequestDto_shouldBeValid_givenValidnputs() {
         CreateExternalApiEmployeeDto requestDto = new CreateExternalApiEmployeeDto();
         requestDto.setSalary(1);
         requestDto.setAge(111);

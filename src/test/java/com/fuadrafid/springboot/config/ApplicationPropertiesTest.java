@@ -15,13 +15,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 })
 @ExtendWith(SpringExtension.class)
 @EnableConfigurationProperties(value = ApplicationProperties.class)
-public class ApplicationPropertiesTest {
+class ApplicationPropertiesTest {
 
     @Autowired
     private ApplicationProperties applicationProperties;
 
     @Test
-    public void test_AppProperties() {
+    void test_AppProperties() {
         assertThat(applicationProperties.getApplicationName()).isEqualTo("some name");
         assertThat(applicationProperties.getPort()).isEqualTo("1234");
     }

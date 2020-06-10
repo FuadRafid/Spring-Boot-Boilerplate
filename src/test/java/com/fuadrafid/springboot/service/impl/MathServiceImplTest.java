@@ -7,58 +7,58 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-public class MathServiceImplTest {
+class MathServiceImplTest {
 
-    MathServiceImpl messageService = new MathServiceImpl();
+    MathServiceImpl mathService = new MathServiceImpl();
 
     @Test
-    public void addNumbers_shouldReturnCorrectAnswer() {
-        assertThat(messageService.addNumbers("3", "2").getAnswer()).isEqualTo("5");
+    void addNumbers_shouldReturnCorrectAnswer() {
+        assertThat(mathService.addNumbers("3", "2").getAnswer()).isEqualTo("5");
     }
 
     @Test
-    public void divideNumbers_shouldReturnCorrectAnswer() {
-        assertThat(messageService.divideNumbers("6", "2").getAnswer()).isEqualTo("3");
+    void divideNumbers_shouldReturnCorrectAnswer() {
+        assertThat(mathService.divideNumbers("6", "2").getAnswer()).isEqualTo("3");
     }
 
     @Test
-    public void subtractNumbers_shouldReturnCorrectAnswer() {
-        assertThat(messageService.subtractNumbers("3", "2").getAnswer()).isEqualTo("1");
+    void subtractNumbers_shouldReturnCorrectAnswer() {
+        assertThat(mathService.subtractNumbers("3", "2").getAnswer()).isEqualTo("1");
     }
 
     @Test
-    public void multiplyNumbers_shouldReturnCorrectAnswer() {
-        assertThat(messageService.multiplyNumbers("3", "2").getAnswer()).isEqualTo("6");
+    void multiplyNumbers_shouldReturnCorrectAnswer() {
+        assertThat(mathService.multiplyNumbers("3", "2").getAnswer()).isEqualTo("6");
     }
 
 
     @Test
     public void addNumbers_shouldThrowException_givenNonNumberInput() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> messageService.addNumbers("a", "2").getAnswer());
+        ServiceException exception = assertThrows(ServiceException.class, () -> mathService.addNumbers("a", "2"));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
     }
 
     @Test
-    public void divideNumbers_shouldThrowException_givenNonNumberInput() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> messageService.divideNumbers("3", "c").getAnswer());
+    void divideNumbers_shouldThrowException_givenNonNumberInput() {
+        ServiceException exception = assertThrows(ServiceException.class, () -> mathService.divideNumbers("3", "c"));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
     }
 
     @Test
-    public void subtractNumbers_shouldThrowException_givenNonNumberInput() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> messageService.subtractNumbers("3", "&").getAnswer());
+    void subtractNumbers_shouldThrowException_givenNonNumberInput() {
+        ServiceException exception = assertThrows(ServiceException.class, () -> mathService.subtractNumbers("3", "&"));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
     }
 
     @Test
-    public void multiplyNumbers_shouldThrowException_givenNonNumberInput() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> messageService.multiplyNumbers("3", ".").getAnswer());
+    void multiplyNumbers_shouldThrowException_givenNonNumberInput() {
+        ServiceException exception = assertThrows(ServiceException.class, () -> mathService.multiplyNumbers("3", "."));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
     }
 
     @Test
-    public void divideNumbers_shouldThrowException_ifDividedByZero() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> messageService.divideNumbers("3", "0").getAnswer());
+    void divideNumbers_shouldThrowException_ifDividedByZero() {
+        ServiceException exception = assertThrows(ServiceException.class, () -> mathService.divideNumbers("3", "0"));
         assertThat(exception.getMessage()).isEqualTo("Cannot divide by 0");
     }
 
