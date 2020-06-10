@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service(value = "defaultMathService")
 public class MathServiceImpl implements MathService {
 
-
+    private static final String WRONG_FORMAT_MESSAGE = "Wrong number format, inputs must be integers";
     @Override
     public MathResponseDto divideNumbers(String firstNumber, String secondNumber) {
         try {
@@ -18,7 +18,7 @@ public class MathServiceImpl implements MathService {
             int secondIntNumber = Integer.parseInt(secondNumber);
             return new MathResponseDto(Integer.toString(firstIntNumber / secondIntNumber));
         } catch (NumberFormatException e) {
-            throw new ServiceException("Wrong number format, inputs must be integers", ExceptionCode.WRONG_NUMBER_FORMAT, e);
+            throw new ServiceException(WRONG_FORMAT_MESSAGE, ExceptionCode.WRONG_NUMBER_FORMAT, e);
         } catch (ArithmeticException e) {
             throw new ServiceException("Cannot divide by 0", ExceptionCode.DIVIDE_BY_ZERO, e);
 
@@ -33,7 +33,7 @@ public class MathServiceImpl implements MathService {
             int secondIntNumber = Integer.parseInt(secondNumber);
             return new MathResponseDto(Integer.toString(firstIntNumber * secondIntNumber));
         } catch (NumberFormatException e) {
-            throw new ServiceException("Wrong number format, inputs must be integers", ExceptionCode.WRONG_NUMBER_FORMAT, e);
+            throw new ServiceException(WRONG_FORMAT_MESSAGE, ExceptionCode.WRONG_NUMBER_FORMAT, e);
         }
     }
 
@@ -44,7 +44,7 @@ public class MathServiceImpl implements MathService {
             int secondIntNumber = Integer.parseInt(secondNumber);
             return new MathResponseDto(Integer.toString(firstIntNumber + secondIntNumber));
         } catch (NumberFormatException e) {
-            throw new ServiceException("Wrong number format, inputs must be integers", ExceptionCode.WRONG_NUMBER_FORMAT, e);
+            throw new ServiceException(WRONG_FORMAT_MESSAGE, ExceptionCode.WRONG_NUMBER_FORMAT, e);
         }
 
 
@@ -57,7 +57,7 @@ public class MathServiceImpl implements MathService {
             int secondIntNumber = Integer.parseInt(secondNumber);
             return new MathResponseDto(Integer.toString(firstIntNumber - secondIntNumber));
         } catch (NumberFormatException e) {
-            throw new ServiceException("Wrong number format, inputs must be integers", ExceptionCode.WRONG_NUMBER_FORMAT, e);
+            throw new ServiceException(WRONG_FORMAT_MESSAGE, ExceptionCode.WRONG_NUMBER_FORMAT, e);
         }
     }
 }

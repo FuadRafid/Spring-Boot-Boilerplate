@@ -33,7 +33,7 @@ class MathServiceImplTest {
 
 
     @Test
-    public void addNumbers_shouldThrowException_givenNonNumberInput() {
+    void addNumbers_shouldThrowException_givenNonNumberInput() {
         ServiceException exception = assertThrows(ServiceException.class, () -> mathService.addNumbers("a", "2"));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
     }

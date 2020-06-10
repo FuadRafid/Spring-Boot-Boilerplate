@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class AppTest {
+class AppTest {
 
     @Autowired
     MathController mathController;
@@ -21,7 +21,7 @@ public class AppTest {
     ExternalRestApiController externalRestApiController;
 
     @Test
-    public void contextLoads() {
+    void contextLoads() {
         assertThat(mathController).isNotNull();
         assertThat(externalRestApiController).isNotNull();
     }
