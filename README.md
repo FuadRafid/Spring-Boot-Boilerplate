@@ -12,6 +12,10 @@ The REST endpoints available for this project are:
 
 For more info about request methods and sub-routes, check the Swagger URL below.
 
+### Code Coverage and Quality ###
+To view coverage and quality of this project, follow this link:
+https://sonarcloud.io/dashboard?id=FuadRafid_Spring-Boot-Sample
+
 ### Logging ###
 Logging and log levels are controlled by the `logback-spring.xml` files.
 
