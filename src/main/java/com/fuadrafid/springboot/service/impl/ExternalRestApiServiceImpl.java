@@ -2,7 +2,7 @@ package com.fuadrafid.springboot.service.impl;
 
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
 import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeDto;
+import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
 import com.fuadrafid.springboot.exception.ExceptionCode;
 import com.fuadrafid.springboot.exception.ServiceException;
 import com.fuadrafid.springboot.service.ExternalRestApiService;
@@ -19,11 +19,11 @@ public class ExternalRestApiServiceImpl implements ExternalRestApiService {
     RestRequestUtil restRequestUtil;
 
     @Override
-    public ExternalApiGetEmployeeDto getEmployees() {
+    public ExternalApiGetEmployeeReponseDto getEmployees() {
         ClientResponse response = restRequestUtil.getSync("http://dummy.restapiexample.com/api/v1/employees");
         if (response.statusCode() != HttpStatus.OK)
             throw new ServiceException("Failed to get employee data, error response from server", ExceptionCode.ERROR_FETCHING_EMPLOYEE_DATA);
-        return response.bodyToMono(ExternalApiGetEmployeeDto.class).block();
+        return response.bodyToMono(ExternalApiGetEmployeeReponseDto.class).block();
 
     }
 

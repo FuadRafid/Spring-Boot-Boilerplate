@@ -1,7 +1,6 @@
 package com.fuadrafid.springboot.service.impl;
 
 
-import com.fuadrafid.springboot.dto.response.MathResponseDto;
 import com.fuadrafid.springboot.exception.ExceptionCode;
 import com.fuadrafid.springboot.exception.ServiceException;
 import com.fuadrafid.springboot.service.MathService;
@@ -12,11 +11,11 @@ public class MathServiceImpl implements MathService {
 
     private static final String WRONG_FORMAT_MESSAGE = "Wrong number format, inputs must be integers";
     @Override
-    public MathResponseDto divideNumbers(String firstNumber, String secondNumber) {
+    public String divideNumbers(String firstNumber, String secondNumber) {
         try {
             int firstIntNumber = Integer.parseInt(firstNumber);
             int secondIntNumber = Integer.parseInt(secondNumber);
-            return new MathResponseDto(Integer.toString(firstIntNumber / secondIntNumber));
+            return Integer.toString(firstIntNumber / secondIntNumber);
         } catch (NumberFormatException e) {
             throw new ServiceException(WRONG_FORMAT_MESSAGE, ExceptionCode.WRONG_NUMBER_FORMAT, e);
         } catch (ArithmeticException e) {
@@ -27,22 +26,22 @@ public class MathServiceImpl implements MathService {
     }
 
     @Override
-    public MathResponseDto multiplyNumbers(String firstNumber, String secondNumber) {
+    public String multiplyNumbers(String firstNumber, String secondNumber) {
         try {
             int firstIntNumber = Integer.parseInt(firstNumber);
             int secondIntNumber = Integer.parseInt(secondNumber);
-            return new MathResponseDto(Integer.toString(firstIntNumber * secondIntNumber));
+            return Integer.toString(firstIntNumber * secondIntNumber);
         } catch (NumberFormatException e) {
             throw new ServiceException(WRONG_FORMAT_MESSAGE, ExceptionCode.WRONG_NUMBER_FORMAT, e);
         }
     }
 
     @Override
-    public MathResponseDto addNumbers(String firstNumber, String secondNumber) {
+    public String addNumbers(String firstNumber, String secondNumber) {
         try {
             int firstIntNumber = Integer.parseInt(firstNumber);
             int secondIntNumber = Integer.parseInt(secondNumber);
-            return new MathResponseDto(Integer.toString(firstIntNumber + secondIntNumber));
+            return Integer.toString(firstIntNumber + secondIntNumber);
         } catch (NumberFormatException e) {
             throw new ServiceException(WRONG_FORMAT_MESSAGE, ExceptionCode.WRONG_NUMBER_FORMAT, e);
         }
@@ -51,11 +50,11 @@ public class MathServiceImpl implements MathService {
     }
 
     @Override
-    public MathResponseDto subtractNumbers(String firstNumber, String secondNumber) {
+    public String subtractNumbers(String firstNumber, String secondNumber) {
         try {
             int firstIntNumber = Integer.parseInt(firstNumber);
             int secondIntNumber = Integer.parseInt(secondNumber);
-            return new MathResponseDto(Integer.toString(firstIntNumber - secondIntNumber));
+            return Integer.toString(firstIntNumber - secondIntNumber);
         } catch (NumberFormatException e) {
             throw new ServiceException(WRONG_FORMAT_MESSAGE, ExceptionCode.WRONG_NUMBER_FORMAT, e);
         }

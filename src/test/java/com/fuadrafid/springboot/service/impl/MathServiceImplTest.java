@@ -13,22 +13,22 @@ class MathServiceImplTest {
 
     @Test
     void addNumbers_shouldReturnCorrectAnswer() {
-        assertThat(mathService.addNumbers("3", "2").getAnswer()).isEqualTo("5");
+        assertThat(mathService.addNumbers("3", "2")).isEqualTo("5");
     }
 
     @Test
     void divideNumbers_shouldReturnCorrectAnswer() {
-        assertThat(mathService.divideNumbers("6", "2").getAnswer()).isEqualTo("3");
+        assertThat(mathService.divideNumbers("6", "2")).isEqualTo("3");
     }
 
     @Test
     void subtractNumbers_shouldReturnCorrectAnswer() {
-        assertThat(mathService.subtractNumbers("3", "2").getAnswer()).isEqualTo("1");
+        assertThat(mathService.subtractNumbers("3", "2")).isEqualTo("1");
     }
 
     @Test
     void multiplyNumbers_shouldReturnCorrectAnswer() {
-        assertThat(mathService.multiplyNumbers("3", "2").getAnswer()).isEqualTo("6");
+        assertThat(mathService.multiplyNumbers("3", "2")).isEqualTo("6");
     }
 
 

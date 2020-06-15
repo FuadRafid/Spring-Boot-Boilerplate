@@ -4,7 +4,7 @@ package com.fuadrafid.springboot.controller;
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
 import com.fuadrafid.springboot.dto.response.MessageResponseDto;
 import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeDto;
+import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
 import com.fuadrafid.springboot.service.ExternalRestApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,7 +29,7 @@ public class ExternalRestApiController {
     }
 
     @GetMapping(value = "/employee")
-    public ResponseEntity<ExternalApiGetEmployeeDto> getPosts() {
+    public ResponseEntity<ExternalApiGetEmployeeReponseDto> getPosts() {
         var data = service.getEmployees();
         return new ResponseEntity<>(data, HttpStatus.OK);
     }

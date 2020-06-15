@@ -2,7 +2,7 @@ package com.fuadrafid.springboot.controller;
 
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
 import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeDto;
+import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
 import com.fuadrafid.springboot.service.ExternalRestApiService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +33,7 @@ class ExternalRestApiControllerTest {
     @Test
     void getPosts_shouldReturnCorrectPosts() {
 
-        ExternalApiGetEmployeeDto employeeData = new ExternalApiGetEmployeeDto();
+        ExternalApiGetEmployeeReponseDto employeeData = new ExternalApiGetEmployeeReponseDto();
         employeeData.setStatus("success");
 
         when(service.getEmployees()).thenReturn(employeeData);

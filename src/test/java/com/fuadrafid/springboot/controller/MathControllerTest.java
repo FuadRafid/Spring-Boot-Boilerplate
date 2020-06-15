@@ -4,11 +4,9 @@ import com.fuadrafid.springboot.dto.request.MathRequestDto;
 import com.fuadrafid.springboot.exception.ServiceException;
 import com.fuadrafid.springboot.service.MathService;
 import com.fuadrafid.springboot.service.impl.MathServiceImpl;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -24,11 +22,6 @@ class MathControllerTest {
 
     @Spy
     MathService service = new MathServiceImpl();
-
-    @Before
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     void helloMessage_shouldReturnCorrect() {

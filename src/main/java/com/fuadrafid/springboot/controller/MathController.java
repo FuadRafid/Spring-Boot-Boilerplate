@@ -36,25 +36,29 @@ public class MathController {
 
     @GetMapping(value = "/add/{firstNumber}/{secondNumber}")
     public ResponseEntity<MathResponseDto> addNumbers(@PathVariable String firstNumber, @PathVariable String secondNumber) {
-        MathResponseDto response = service.addNumbers(firstNumber, secondNumber);
+        String answer = service.addNumbers(firstNumber, secondNumber);
+        MathResponseDto response = new MathResponseDto(answer);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping(value = "/divide")
     public ResponseEntity<MathResponseDto> divideNumbers(@Valid @RequestBody MathRequestDto mathRequestDto) {
-        MathResponseDto response = service.divideNumbers(mathRequestDto.getFirstNumber(), mathRequestDto.getSecondNumber());
+        String answer = service.divideNumbers(mathRequestDto.getFirstNumber(), mathRequestDto.getSecondNumber());
+        MathResponseDto response = new MathResponseDto(answer);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping(value = "/subtract")
     public ResponseEntity<MathResponseDto> subtractNumbers(@RequestParam String firstNumber, @RequestParam String secondNumber) {
-        MathResponseDto response = service.subtractNumbers(firstNumber, secondNumber);
+        String answer = service.subtractNumbers(firstNumber, secondNumber);
+        MathResponseDto response = new MathResponseDto(answer);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping(value = "/multiply", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MathResponseDto> multiplyNumber(@RequestPart String firstNumber, @RequestPart String secondNumber) {
-        MathResponseDto response = service.multiplyNumbers(firstNumber, secondNumber);
+        String answer = service.multiplyNumbers(firstNumber, secondNumber);
+        MathResponseDto response = new MathResponseDto(answer);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

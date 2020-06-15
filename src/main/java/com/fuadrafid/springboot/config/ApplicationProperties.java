@@ -28,11 +28,4 @@ public class ApplicationProperties {
         this.port = port;
     }
 
-    @Override
-    public String toString() {
-        return "AppProperties [applicationName=" + applicationName + ", port=" + port
-                + "]";
-    }
-
-
 }

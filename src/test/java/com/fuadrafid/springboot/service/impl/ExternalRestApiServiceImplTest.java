@@ -2,7 +2,7 @@ package com.fuadrafid.springboot.service.impl;
 
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
 import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeDto;
+import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
 import com.fuadrafid.springboot.exception.ServiceException;
 import com.fuadrafid.springboot.util.RestRequestUtil;
 import org.junit.jupiter.api.Test;
@@ -29,10 +29,10 @@ class ExternalRestApiServiceImplTest {
     @Test
     void getEmployee_givenHttpStatusOk_shouldReturnCorrectResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
-        ExternalApiGetEmployeeDto employeeData = new ExternalApiGetEmployeeDto();
+        ExternalApiGetEmployeeReponseDto employeeData = new ExternalApiGetEmployeeReponseDto();
         employeeData.setStatus("success");
 
-        when(clientResponse.bodyToMono(ExternalApiGetEmployeeDto.class).block()).thenReturn(employeeData);
+        when(clientResponse.bodyToMono(ExternalApiGetEmployeeReponseDto.class).block()).thenReturn(employeeData);
         when(clientResponse.statusCode()).thenReturn(HttpStatus.OK);
 
         when(restRequestUtil.getSync(any())).thenReturn(clientResponse);
@@ -43,7 +43,7 @@ class ExternalRestApiServiceImplTest {
     @Test
     void getEmployee_givenHttpStatusNotOk_shouldReturnErrorResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
-        ExternalApiGetEmployeeDto employeeData = new ExternalApiGetEmployeeDto();
+        ExternalApiGetEmployeeReponseDto employeeData = new ExternalApiGetEmployeeReponseDto();
         employeeData.setStatus("success");
 
         when(clientResponse.statusCode()).thenReturn(HttpStatus.INTERNAL_SERVER_ERROR);
