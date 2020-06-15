@@ -1,5 +1,7 @@
 # Spring Boot Sample #
 
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=FuadRafid_Spring-Boot-Sample&metric=alert_status)](https://sonarcloud.io/dashboard?id=FuadRafid_Spring-Boot-Sample)
+
 ### What does this repo contain? ###
 
 This repo has a Spring Boot Project that has Rest Endpoints with Exception Handling, Logging, API Documentation with Swagger and External API calls using Spring WebClient.
@@ -11,10 +13,6 @@ The REST endpoints available for this project are:
 2. http://localhost:8080/math
 
 For more info about request methods and sub-routes, check the Swagger URL below.
-
-### Code Coverage and Quality ###
-To view coverage and quality of this project, follow this link:
-https://sonarcloud.io/dashboard?id=FuadRafid_Spring-Boot-Sample
 
 ### Logging ###
 Logging and log levels are controlled by the `logback-spring.xml` files.
