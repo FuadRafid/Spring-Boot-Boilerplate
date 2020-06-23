@@ -64,4 +64,13 @@ public class RestRequestUtil {
                 .exchange().block();
     }
 
+    public <T> ClientResponse patchSync(String url, Object reqDto, Class<T> reqDtoClass) {
+        return webClientBuilder
+                .build()
+                .patch()
+                .uri(url)
+                .header(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .body(Mono.just(reqDto), reqDtoClass)
+                .exchange().block();
+    }
 }

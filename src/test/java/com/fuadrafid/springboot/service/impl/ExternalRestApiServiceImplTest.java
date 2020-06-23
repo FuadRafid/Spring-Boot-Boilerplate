@@ -3,7 +3,7 @@ package com.fuadrafid.springboot.service.impl;
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
 import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
 import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
-import com.fuadrafid.springboot.exception.ServiceException;
+import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import com.fuadrafid.springboot.util.RestRequestUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,9 +50,9 @@ class ExternalRestApiServiceImplTest {
 
         when(restRequestUtil.getSync(any())).thenReturn(clientResponse);
 
-        ServiceException exception = assertThrows(ServiceException.class, () -> service.getEmployees());
+        ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> service.getEmployees());
 
-        assertThat(exception.getMessage()).isEqualTo("Failed to get employee data, error response from server");
+        assertThat(exception.getMessage()).isEqualTo("Failed to get employee data, error response from employee server");
 
     }
 
@@ -93,8 +93,8 @@ class ExternalRestApiServiceImplTest {
 
         when(restRequestUtil.postSync(any(), any(), any())).thenReturn(clientResponse);
 
-        ServiceException exception = assertThrows(ServiceException.class, () -> service.createEmployee(mockRequest));
-        assertThat(exception.getMessage()).isEqualTo("Failed to create employee, error response from server");
+        ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> service.createEmployee(mockRequest));
+        assertThat(exception.getMessage()).isEqualTo("Failed to create employee, error response from employee server");
 
     }
 }

@@ -4,7 +4,7 @@
 
 ### What does this repo contain? ###
 
-This repo has a Spring Boot Project that has Rest Endpoints with Exception Handling, Logging, API Documentation with Swagger and External API calls using Spring WebClient.
+This repo has a Spring Sample Boot Project.
 
 ### Rest Endpoints ###
 The REST endpoints available for this project are:
@@ -15,11 +15,9 @@ The REST endpoints available for this project are:
 For more info about request methods and sub-routes, check the Swagger URL below.
 
 ### Logging ###
-Logging and log levels are controlled by the `logback-spring.xml` files.
+Logback is used for logging.
 
 ### API Documentation with Swagger ###
-The `SwaggerConfig` class inside the package `config` has the configuration for swagger.
-
 Link to Swagger UI: http://localhost:8080/swagger-ui.html
 
 ### Actuator ###

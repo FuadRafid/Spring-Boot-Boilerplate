@@ -6,7 +6,7 @@ public interface MathService {
 
     String multiplyNumbers(String firstNumber, String secondNumber);
 
-    String addNumbers(String firstNumber, String secondNumber);
+    String getPower(String number, String power);
 
-    String subtractNumbers(String firstNumber, String secondNumber);
+    String getExponential(String input);
 }

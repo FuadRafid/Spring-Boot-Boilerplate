@@ -2,7 +2,6 @@ package com.fuadrafid.springboot.controller;
 
 
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
-import com.fuadrafid.springboot.dto.response.MessageResponseDto;
 import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
 import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
 import com.fuadrafid.springboot.service.ExternalRestApiService;
@@ -22,11 +21,6 @@ public class ExternalRestApiController {
     @Qualifier(value = "defaultExternalApiService")
     private ExternalRestApiService service;
 
-    @GetMapping(value = "")
-    public ResponseEntity<MessageResponseDto> helloMessage() {
-        var data = new MessageResponseDto("This url calls an external Api.");
-        return new ResponseEntity<>(data, HttpStatus.OK);
-    }
 
     @GetMapping(value = "/employee")
     public ResponseEntity<ExternalApiGetEmployeeReponseDto> getPosts() {
@@ -39,4 +33,5 @@ public class ExternalRestApiController {
         var data = service.createEmployee(requestDto);
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
+
 }

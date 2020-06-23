@@ -1,8 +1,7 @@
 package com.fuadrafid.springboot.controller;
 
-import com.fuadrafid.springboot.dto.request.MathRequestDto;
+import com.fuadrafid.springboot.dto.request.DivisionRequestDto;
 import com.fuadrafid.springboot.dto.response.MathResponseDto;
-import com.fuadrafid.springboot.dto.response.MessageResponseDto;
 import com.fuadrafid.springboot.service.MathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,44 +20,33 @@ public class MathController {
     @Qualifier(value = "defaultMathService")
     private MathService service;
 
-    @GetMapping(value = "")
-    public ResponseEntity<MessageResponseDto> helloMessage() {
-        MessageResponseDto response = new MessageResponseDto("Hello, this is a calculator.");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
 
-    @GetMapping(value = "/add")
-    public ResponseEntity<MessageResponseDto> addMessage() {
-        MessageResponseDto response = new MessageResponseDto("To add, use the url: /calculator/add/{firstNumber}/{secondNumber}.");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-
-    }
-
-    @GetMapping(value = "/add/{firstNumber}/{secondNumber}")
-    public ResponseEntity<MathResponseDto> addNumbers(@PathVariable String firstNumber, @PathVariable String secondNumber) {
-        String answer = service.addNumbers(firstNumber, secondNumber);
+    @GetMapping(value = "/power/{number}/{power}")
+    public ResponseEntity<MathResponseDto> power(@PathVariable String number, @PathVariable String power) {
+        String answer = service.getPower(number, power);
         MathResponseDto response = new MathResponseDto(answer);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping(value = "/divide")
-    public ResponseEntity<MathResponseDto> divideNumbers(@Valid @RequestBody MathRequestDto mathRequestDto) {
-        String answer = service.divideNumbers(mathRequestDto.getFirstNumber(), mathRequestDto.getSecondNumber());
+    public ResponseEntity<MathResponseDto> divideNumbers(@Valid @RequestBody DivisionRequestDto divisionRequestDto) {
+        String answer = service.divideNumbers(divisionRequestDto.getDividend(), divisionRequestDto.getDivisor());
         MathResponseDto response = new MathResponseDto(answer);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/subtract")
-    public ResponseEntity<MathResponseDto> subtractNumbers(@RequestParam String firstNumber, @RequestParam String secondNumber) {
-        String answer = service.subtractNumbers(firstNumber, secondNumber);
+    @GetMapping(value = "/multiply")
+    public ResponseEntity<MathResponseDto> multiplyNumber(@RequestParam String multiplier, @RequestParam String multiplicand) {
+        String answer = service.multiplyNumbers(multiplier, multiplicand);
         MathResponseDto response = new MathResponseDto(answer);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/multiply", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<MathResponseDto> multiplyNumber(@RequestPart String firstNumber, @RequestPart String secondNumber) {
-        String answer = service.multiplyNumbers(firstNumber, secondNumber);
+    @PostMapping(value = "/exp/{input}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<MathResponseDto> exponential(@RequestPart String input) {
+        String answer = service.getExponential(input);
         MathResponseDto response = new MathResponseDto(answer);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 }

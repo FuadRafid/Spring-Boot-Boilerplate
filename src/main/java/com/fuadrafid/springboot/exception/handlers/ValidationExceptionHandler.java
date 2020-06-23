@@ -1,41 +1,27 @@
-package com.fuadrafid.springboot.exception;
+package com.fuadrafid.springboot.exception.handlers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fuadrafid.springboot.exception.response.ValidationExceptionResponse;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-@ControllerAdvice
-public class ExceptionController extends ResponseEntityExceptionHandler {
-    @Autowired
-    private ExceptionResponseFactory exceptionResponseFactory;
-
-    @ExceptionHandler(value = ServiceException.class)
-    ResponseEntity<Map<String, Object>> handleException(final ServiceException e) {
-        super.logger.error(e);
-        return this.exceptionResponseFactory.handleException(e);
-    }
+@RestControllerAdvice
+public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers,
                                                                   HttpStatus status, WebRequest request) {
-
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", new Date());
-        body.put("status", status.value());
+        super.logger.error(ex.getMessage());
 
         List<String> errorMessages = ex.getBindingResult()
                 .getFieldErrors()
@@ -43,12 +29,8 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
 
-        body.put("error", "Invalid parameter error");
-        body.put("messages", errorMessages);
-
-        return new ResponseEntity<>(body, headers, status);
+        ValidationExceptionResponse response = new ValidationExceptionResponse(errorMessages, LocalDateTime.now());
+        return new ResponseEntity<>(response, headers, status);
 
     }
-
-
 }

@@ -10,8 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Objects;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -25,10 +23,6 @@ class ExternalRestApiControllerTest {
     @Mock
     ExternalRestApiService service;
 
-    @Test
-    void helloMessage_shouldReturnCorrectMessage() {
-        assertThat(Objects.requireNonNull(externalRestApiController.helloMessage().getBody()).getMessage()).isEqualTo("This url calls an external Api.");
-    }
 
     @Test
     void getPosts_shouldReturnCorrectPosts() {

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -30,47 +31,79 @@ class RestRequestUtilTest {
     }
 
     @Test
-    void postSync() {
+    void postSync_shouldReturnCorrectResponse() {
         mockWebServer.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .setBody(JSON_RESPONSE));
+        ClientResponse response = restRequestUtil.postSync(mockWebServer.url("/").toString(), new ReqDto("some req"), ReqDto.class);
         assertThat(
-                restRequestUtil.postSync(mockWebServer.url("/").toString(), new ReqDto("some req"), ReqDto.class)
-        ).isInstanceOf(ClientResponse.class);
+                response.statusCode()
+        ).isEqualTo(HttpStatus.OK);
+
+        assertThat(response.bodyToMono(String.class).block()).isEqualTo(JSON_RESPONSE);
     }
 
     @Test
-    void getSync() {
+    void getSync_shouldReturnCorrectResponse() {
         mockWebServer.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .setBody(JSON_RESPONSE));
-        assertThat(restRequestUtil.getSync(mockWebServer.url("/").toString())).isInstanceOf(ClientResponse.class);
-    }
 
-    @Test
-    void deleteSync() {
-        mockWebServer.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .setBody(JSON_RESPONSE));
-        assertThat(restRequestUtil.deleteSync(mockWebServer.url("/").toString())).isInstanceOf(ClientResponse.class);
-    }
-
-    @Test
-    void putSync() {
-        mockWebServer.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .setBody(JSON_RESPONSE));
+        ClientResponse response = restRequestUtil.getSync(mockWebServer.url("/").toString());
         assertThat(
-                restRequestUtil.putSync(mockWebServer.url("/").toString(), new ReqDto("some req"), ReqDto.class)
-        ).isInstanceOf(ClientResponse.class);
+                response.statusCode()
+        ).isEqualTo(HttpStatus.OK);
+
+        assertThat(response.bodyToMono(String.class).block()).isEqualTo(JSON_RESPONSE);    }
+
+    @Test
+    void deleteSync_shouldReturnCorrectResponse() {
+        mockWebServer.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .setBody(JSON_RESPONSE));
+
+        ClientResponse response = restRequestUtil.deleteSync(mockWebServer.url("/").toString());
+        assertThat(
+                response.statusCode()
+        ).isEqualTo(HttpStatus.OK);
+
+        assertThat(response.bodyToMono(String.class).block()).isEqualTo(JSON_RESPONSE);    }
+
+    @Test
+    void patchSync_shouldReturnCorrectResponse() {
+        mockWebServer.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .setBody(JSON_RESPONSE));
+
+        ClientResponse response = restRequestUtil.patchSync(mockWebServer.url("/").toString(), new ReqDto("some req"), ReqDto.class);
+        assertThat(
+                response.statusCode()
+        ).isEqualTo(HttpStatus.OK);
+
+        assertThat(response.bodyToMono(String.class).block()).isEqualTo(JSON_RESPONSE);    }
+
+    @Test
+    void putSync_shouldReturnCorrectResponse() {
+        mockWebServer.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .setBody(JSON_RESPONSE));
+
+        ClientResponse response = restRequestUtil.putSync(mockWebServer.url("/").toString(), new ReqDto("some req"), ReqDto.class);
+        assertThat(
+                response.statusCode()
+        ).isEqualTo(HttpStatus.OK);
+
+        assertThat(response.bodyToMono(String.class).block()).isEqualTo(JSON_RESPONSE);
     }
 }
 

@@ -1,7 +1,7 @@
 package com.fuadrafid.springboot.controller;
 
-import com.fuadrafid.springboot.dto.request.MathRequestDto;
-import com.fuadrafid.springboot.exception.ServiceException;
+import com.fuadrafid.springboot.dto.request.DivisionRequestDto;
+import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import com.fuadrafid.springboot.service.MathService;
 import com.fuadrafid.springboot.service.impl.MathServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -23,67 +23,44 @@ class MathControllerTest {
     @Spy
     MathService service = new MathServiceImpl();
 
-    @Test
-    void helloMessage_shouldReturnCorrect() {
-        assertThat(Objects.requireNonNull(mathController.helloMessage().getBody()).getMessage())
-                .isEqualTo("Hello, this is a calculator.");
-    }
-
-    @Test
-    void addMessage_shouldReturnCorrectMessage() {
-        assertThat(Objects.requireNonNull(mathController.addMessage().getBody()).getMessage())
-                .isEqualTo("To add, use the url: /calculator/add/{firstNumber}/{secondNumber}.");
-    }
-
-    @Test
-    void addNumbers_shouldReturnCorrectAnswer_givenValidNumbers() {
-        assertThat(Objects.requireNonNull(mathController.addNumbers("3", "2").getBody()).getAnswer())
-                .isEqualTo("5");
-    }
-
-    @Test
-    void addNumbers_shouldThrowException_givenInvalidInput() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> mathController.addNumbers("abc", "23"));
-        assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
-    }
 
     @Test
     void divideNumbers_shouldReturnCorrectAnswer_givenValidNumbers() {
-        MathRequestDto mathRequestDto = new MathRequestDto();
-        mathRequestDto.setFirstNumber("6");
-        mathRequestDto.setSecondNumber("2");
-        assertThat(Objects.requireNonNull(mathController.divideNumbers(mathRequestDto).getBody()).getAnswer())
+        DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
+        divisionRequestDto.setDividend("6");
+        divisionRequestDto.setDivisor("2");
+        assertThat(Objects.requireNonNull(mathController.divideNumbers(divisionRequestDto).getBody()).getAnswer())
                 .isEqualTo("3");
     }
 
     @Test
     void divideNumbers_shouldThrowException_givenInvalidInput() {
-        MathRequestDto mathRequestDto = new MathRequestDto();
-        mathRequestDto.setFirstNumber("abc");
-        mathRequestDto.setSecondNumber("2");
-        ServiceException exception = assertThrows(ServiceException.class, () -> mathController.divideNumbers(mathRequestDto));
+        DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
+        divisionRequestDto.setDividend("abc");
+        divisionRequestDto.setDivisor("2");
+        ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> mathController.divideNumbers(divisionRequestDto));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
     }
 
     @Test
     void divideNumbers_shouldThrowException_givenDividedByZero() {
-        MathRequestDto mathRequestDto = new MathRequestDto();
-        mathRequestDto.setFirstNumber("3");
-        mathRequestDto.setSecondNumber("0");
-        ServiceException exception = assertThrows(ServiceException.class, () -> mathController.divideNumbers(mathRequestDto));
+        DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
+        divisionRequestDto.setDividend("3");
+        divisionRequestDto.setDivisor("0");
+        ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> mathController.divideNumbers(divisionRequestDto));
         assertThat(exception.getMessage()).isEqualTo("Cannot divide by 0");
     }
 
     @Test
-    void subtractNumbers_shouldReturnCorrectAnswer_givenValidNumbers() {
-        assertThat(Objects.requireNonNull(mathController.subtractNumbers("6", "2").getBody()).getAnswer())
-                .isEqualTo("4");
+    void power_shouldReturnCorrectAnswer_givenValidNumbers() {
+        assertThat(Objects.requireNonNull(mathController.power("6", "2").getBody()).getAnswer())
+                .isEqualTo("36.0");
     }
 
     @Test
-    void subtractNumbers_shouldThrowException_givenInvalidInput() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> mathController.subtractNumbers("abc", "23"));
-        assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
+    void power_shouldThrowException_givenInvalidInput() {
+        ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> mathController.power("abc", "23"));
+        assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be decimal numbers");
 
     }
 
@@ -95,8 +72,21 @@ class MathControllerTest {
 
     @Test
     void multiplyNumber_shouldThrowException_givenInvalidInput() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> mathController.multiplyNumber("abc", "23"));
+        ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> mathController.multiplyNumber("abc", "23"));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
+
+    }
+
+    @Test
+    void exponential_shouldReturnCorrectAnswer_givenValidNumbers() {
+        assertThat(Objects.requireNonNull(mathController.exponential("6.2").getBody()).getAnswer())
+                .isEqualTo("492.7490410932563");
+    }
+
+    @Test
+    void exponential_shouldThrowException_givenInvalidInput() {
+        ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> mathController.exponential("abc"));
+        assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be decimal numbers");
 
     }
 }

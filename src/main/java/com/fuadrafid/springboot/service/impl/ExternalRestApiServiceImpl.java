@@ -3,8 +3,7 @@ package com.fuadrafid.springboot.service.impl;
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
 import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
 import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
-import com.fuadrafid.springboot.exception.ExceptionCode;
-import com.fuadrafid.springboot.exception.ServiceException;
+import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import com.fuadrafid.springboot.service.ExternalRestApiService;
 import com.fuadrafid.springboot.util.RestRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class ExternalRestApiServiceImpl implements ExternalRestApiService {
     public ExternalApiGetEmployeeReponseDto getEmployees() {
         ClientResponse response = restRequestUtil.getSync("http://dummy.restapiexample.com/api/v1/employees");
         if (response.statusCode() != HttpStatus.OK)
-            throw new ServiceException("Failed to get employee data, error response from server", ExceptionCode.ERROR_FETCHING_EMPLOYEE_DATA);
+            throw new ApplicationInternalException("Failed to get employee data, error response from employee server", HttpStatus.FAILED_DEPENDENCY);
         return response.bodyToMono(ExternalApiGetEmployeeReponseDto.class).block();
 
     }
@@ -31,7 +30,7 @@ public class ExternalRestApiServiceImpl implements ExternalRestApiService {
     public ExternalApiCreateEmployeeResponseDto createEmployee(CreateExternalApiEmployeeDto requestDto) {
         ClientResponse response = restRequestUtil.postSync("http://dummy.restapiexample.com/api/v1/create", requestDto, CreateExternalApiEmployeeDto.class);
         if (response.statusCode() != HttpStatus.OK)
-            throw new ServiceException("Failed to create employee, error response from server", ExceptionCode.ERROR_CREATING_EMPLOYEE);
+            throw new ApplicationInternalException("Failed to create employee, error response from employee server",  HttpStatus.FAILED_DEPENDENCY);
         return response.bodyToMono(ExternalApiCreateEmployeeResponseDto.class).block();
     }
 }

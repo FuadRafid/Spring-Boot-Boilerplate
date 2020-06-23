@@ -1,6 +1,6 @@
 package com.fuadrafid.springboot.request;
 
-import com.fuadrafid.springboot.dto.request.MathRequestDto;
+import com.fuadrafid.springboot.dto.request.DivisionRequestDto;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -15,7 +15,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class MathRequestDtoTest {
+class DivisionRequestDtoTest {
     private Validator validator;
 
     @BeforeAll
@@ -26,14 +26,14 @@ class MathRequestDtoTest {
 
     @Test
     void testCalculationRequestDto_shouldBeInvalid_givenBlankStringInputs() {
-        MathRequestDto mathRequestDto = new MathRequestDto();
-        mathRequestDto.setFirstNumber("");
-        mathRequestDto.setSecondNumber("");
+        DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
+        divisionRequestDto.setDividend("");
+        divisionRequestDto.setDivisor("");
 
-        Set<ConstraintViolation<MathRequestDto>> violations = validator.validate(mathRequestDto);
+        Set<ConstraintViolation<DivisionRequestDto>> violations = validator.validate(divisionRequestDto);
         ArrayList<String> messages = new ArrayList<>();
 
-        for (ConstraintViolation<MathRequestDto> violation : violations) {
+        for (ConstraintViolation<DivisionRequestDto> violation : violations) {
             messages.add(violation.getMessage());
         }
 
@@ -45,14 +45,14 @@ class MathRequestDtoTest {
 
     @Test
     void test_NotNumberValidator_shouldBeInvalid_givenNullInputs() {
-        MathRequestDto mathRequestDto = new MathRequestDto();
-        mathRequestDto.setFirstNumber(null);
-        mathRequestDto.setSecondNumber(null);
+        DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
+        divisionRequestDto.setDividend(null);
+        divisionRequestDto.setDivisor(null);
 
-        Set<ConstraintViolation<MathRequestDto>> violations = validator.validate(mathRequestDto);
+        Set<ConstraintViolation<DivisionRequestDto>> violations = validator.validate(divisionRequestDto);
         ArrayList<String> messages = new ArrayList<>();
 
-        for (ConstraintViolation<MathRequestDto> violation : violations) {
+        for (ConstraintViolation<DivisionRequestDto> violation : violations) {
             messages.add(violation.getMessage());
         }
 
@@ -64,14 +64,14 @@ class MathRequestDtoTest {
 
     @Test
     void test_NotNumberValidator_shouldBeValid_givenNonBlankStringInputs() {
-        MathRequestDto mathRequestDto = new MathRequestDto();
-        mathRequestDto.setFirstNumber("3");
-        mathRequestDto.setSecondNumber("abc");
+        DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
+        divisionRequestDto.setDividend("3");
+        divisionRequestDto.setDivisor("abc");
 
-        Set<ConstraintViolation<MathRequestDto>> violations = validator.validate(mathRequestDto);
+        Set<ConstraintViolation<DivisionRequestDto>> violations = validator.validate(divisionRequestDto);
         ArrayList<String> messages = new ArrayList<>();
 
-        for (ConstraintViolation<MathRequestDto> violation : violations) {
+        for (ConstraintViolation<DivisionRequestDto> violation : violations) {
             messages.add(violation.getMessage());
         }
 
