@@ -1,6 +1,6 @@
 package com.fuadrafid.springboot.dto.response.externalapi.getemployee;
 
-public class ExternalApiGetEmployeeReponseDto {
+public class GetEmployeeResponseDto {
     private GetEmployeeResponseData[] data;
 
     private String status;

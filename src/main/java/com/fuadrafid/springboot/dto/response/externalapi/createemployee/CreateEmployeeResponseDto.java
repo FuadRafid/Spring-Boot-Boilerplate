@@ -1,6 +1,6 @@
 package com.fuadrafid.springboot.dto.response.externalapi.createemployee;
 
-public class ExternalApiCreateEmployeeResponseDto {
+public class CreateEmployeeResponseDto {
     private CreateEmployeeResponseData data;
 
     private String status;

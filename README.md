@@ -9,7 +9,7 @@ This repo has a Spring Sample Boot Project.
 ### Rest Endpoints ###
 The REST endpoints available for this project are:
 
-1. http://localhost:8080/external
+1. http://localhost:8080/employee
 2. http://localhost:8080/math
 
 For more info about request methods and sub-routes, check the Swagger URL below.

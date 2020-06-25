@@ -1,9 +1,9 @@
 package com.fuadrafid.springboot.controller;
 
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
-import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
-import com.fuadrafid.springboot.service.ExternalRestApiService;
+import com.fuadrafid.springboot.dto.response.externalapi.createemployee.CreateEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.response.externalapi.getemployee.GetEmployeeResponseDto;
+import com.fuadrafid.springboot.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,23 +15,23 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class ExternalRestApiControllerTest {
+class EmployeeControllerTest {
 
     @InjectMocks
-    ExternalRestApiController externalRestApiController;
+    EmployeeController employeeController;
 
     @Mock
-    ExternalRestApiService service;
+    EmployeeService service;
 
 
     @Test
     void getPosts_shouldReturnCorrectPosts() {
 
-        ExternalApiGetEmployeeReponseDto employeeData = new ExternalApiGetEmployeeReponseDto();
+        GetEmployeeResponseDto employeeData = new GetEmployeeResponseDto();
         employeeData.setStatus("success");
 
         when(service.getEmployees()).thenReturn(employeeData);
-        assertThat(externalRestApiController.getPosts().getBody()).isEqualTo(employeeData);
+        assertThat(employeeController.getPosts().getBody()).isEqualTo(employeeData);
     }
 
     @Test
@@ -41,12 +41,12 @@ class ExternalRestApiControllerTest {
         mockRequest.setAge(12);
         mockRequest.setSalary(111111);
 
-        final ExternalApiCreateEmployeeResponseDto mockResponse = new ExternalApiCreateEmployeeResponseDto();
+        final CreateEmployeeResponseDto mockResponse = new CreateEmployeeResponseDto();
         mockResponse.setStatus("some status");
 
 
         when(service.createEmployee(any())).thenReturn(mockResponse);
-        assertThat(externalRestApiController.createPost(mockRequest).getBody()).isEqualTo(mockResponse);
+        assertThat(employeeController.createPost(mockRequest).getBody()).isEqualTo(mockResponse);
 
     }
 }

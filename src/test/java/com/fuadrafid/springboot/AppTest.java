@@ -1,6 +1,6 @@
 package com.fuadrafid.springboot;
 
-import com.fuadrafid.springboot.controller.ExternalRestApiController;
+import com.fuadrafid.springboot.controller.EmployeeController;
 import com.fuadrafid.springboot.controller.MathController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,12 +18,12 @@ class AppTest {
     MathController mathController;
 
     @Autowired
-    ExternalRestApiController externalRestApiController;
+    EmployeeController employeeController;
 
     @Test
     void contextLoads() {
         assertThat(mathController).isNotNull();
-        assertThat(externalRestApiController).isNotNull();
+        assertThat(employeeController).isNotNull();
     }
 
 }

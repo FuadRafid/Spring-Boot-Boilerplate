@@ -1,8 +1,8 @@
 package com.fuadrafid.springboot.service.impl;
 
 import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
-import com.fuadrafid.springboot.dto.response.externalapi.createemployee.ExternalApiCreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.ExternalApiGetEmployeeReponseDto;
+import com.fuadrafid.springboot.dto.response.externalapi.createemployee.CreateEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.response.externalapi.getemployee.GetEmployeeResponseDto;
 import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import com.fuadrafid.springboot.util.RestRequestUtil;
 import org.junit.jupiter.api.Test;
@@ -19,9 +19,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class ExternalRestApiServiceImplTest {
+class EmployeeServiceImplTest {
     @InjectMocks
-    private ExternalRestApiServiceImpl service;
+    private EmployeeServiceImpl service;
 
     @Mock
     private RestRequestUtil restRequestUtil;
@@ -29,10 +29,10 @@ class ExternalRestApiServiceImplTest {
     @Test
     void getEmployee_givenHttpStatusOk_shouldReturnCorrectResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
-        ExternalApiGetEmployeeReponseDto employeeData = new ExternalApiGetEmployeeReponseDto();
+        GetEmployeeResponseDto employeeData = new GetEmployeeResponseDto();
         employeeData.setStatus("success");
 
-        when(clientResponse.bodyToMono(ExternalApiGetEmployeeReponseDto.class).block()).thenReturn(employeeData);
+        when(clientResponse.bodyToMono(GetEmployeeResponseDto.class).block()).thenReturn(employeeData);
         when(clientResponse.statusCode()).thenReturn(HttpStatus.OK);
 
         when(restRequestUtil.getSync(any())).thenReturn(clientResponse);
@@ -43,7 +43,7 @@ class ExternalRestApiServiceImplTest {
     @Test
     void getEmployee_givenHttpStatusNotOk_shouldReturnErrorResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
-        ExternalApiGetEmployeeReponseDto employeeData = new ExternalApiGetEmployeeReponseDto();
+        GetEmployeeResponseDto employeeData = new GetEmployeeResponseDto();
         employeeData.setStatus("success");
 
         when(clientResponse.statusCode()).thenReturn(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -65,10 +65,10 @@ class ExternalRestApiServiceImplTest {
         mockRequest.setAge(12);
         mockRequest.setSalary(111111);
 
-        final ExternalApiCreateEmployeeResponseDto mockResponse = new ExternalApiCreateEmployeeResponseDto();
+        final CreateEmployeeResponseDto mockResponse = new CreateEmployeeResponseDto();
         mockResponse.setStatus("some status");
 
-        when(clientResponse.bodyToMono(ExternalApiCreateEmployeeResponseDto.class).block()).thenReturn(mockResponse);
+        when(clientResponse.bodyToMono(CreateEmployeeResponseDto.class).block()).thenReturn(mockResponse);
         when(clientResponse.statusCode()).thenReturn(HttpStatus.OK);
 
         when(restRequestUtil.postSync(any(), any(), any())).thenReturn(clientResponse);
@@ -86,7 +86,7 @@ class ExternalRestApiServiceImplTest {
         mockRequest.setAge(12);
         mockRequest.setSalary(111111);
 
-        final ExternalApiCreateEmployeeResponseDto mockResponse = new ExternalApiCreateEmployeeResponseDto();
+        final CreateEmployeeResponseDto mockResponse = new CreateEmployeeResponseDto();
         mockResponse.setStatus("some status");
 
         when(clientResponse.statusCode()).thenReturn(HttpStatus.INTERNAL_SERVER_ERROR);
