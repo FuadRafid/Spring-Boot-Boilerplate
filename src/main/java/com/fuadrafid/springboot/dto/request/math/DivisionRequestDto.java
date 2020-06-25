@@ -1,4 +1,4 @@
-package com.fuadrafid.springboot.dto.request;
+package com.fuadrafid.springboot.dto.request.math;
 
 import javax.validation.constraints.NotBlank;
 

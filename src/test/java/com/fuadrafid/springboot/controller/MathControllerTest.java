@@ -1,6 +1,6 @@
 package com.fuadrafid.springboot.controller;
 
-import com.fuadrafid.springboot.dto.request.DivisionRequestDto;
+import com.fuadrafid.springboot.dto.request.math.DivisionRequestDto;
 import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import com.fuadrafid.springboot.service.MathService;
 import com.fuadrafid.springboot.service.impl.MathServiceImpl;
@@ -25,7 +25,7 @@ class MathControllerTest {
 
 
     @Test
-    void divideNumbers_shouldReturnCorrectAnswer_givenValidNumbers() {
+    void test_divideNumbers_shouldReturnCorrectAnswer_givenValidNumbers() {
         DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
         divisionRequestDto.setDividend("6");
         divisionRequestDto.setDivisor("2");
@@ -34,7 +34,7 @@ class MathControllerTest {
     }
 
     @Test
-    void divideNumbers_shouldThrowException_givenInvalidInput() {
+    void test_divideNumbers_shouldThrowException_givenInvalidInput() {
         DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
         divisionRequestDto.setDividend("abc");
         divisionRequestDto.setDivisor("2");
@@ -43,7 +43,7 @@ class MathControllerTest {
     }
 
     @Test
-    void divideNumbers_shouldThrowException_givenDividedByZero() {
+    void test_divideNumbers_shouldThrowException_givenDividedByZero() {
         DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
         divisionRequestDto.setDividend("3");
         divisionRequestDto.setDivisor("0");
@@ -52,39 +52,39 @@ class MathControllerTest {
     }
 
     @Test
-    void power_shouldReturnCorrectAnswer_givenValidNumbers() {
+    void test_power_shouldReturnCorrectAnswer_givenValidNumbers() {
         assertThat(Objects.requireNonNull(mathController.power("6", "2").getBody()).getAnswer())
                 .isEqualTo("36.0");
     }
 
     @Test
-    void power_shouldThrowException_givenInvalidInput() {
+    void test_power_shouldThrowException_givenInvalidInput() {
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> mathController.power("abc", "23"));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be decimal numbers");
 
     }
 
     @Test
-    void multiplyNumber_shouldReturnCorrectAnswer_givenValidNumbers() {
+    void test_multiplyNumber_shouldReturnCorrectAnswer_givenValidNumbers() {
         assertThat(Objects.requireNonNull(mathController.multiplyNumber("6", "2").getBody()).getAnswer())
                 .isEqualTo("12");
     }
 
     @Test
-    void multiplyNumber_shouldThrowException_givenInvalidInput() {
+    void test_multiplyNumber_shouldThrowException_givenInvalidInput() {
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> mathController.multiplyNumber("abc", "23"));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be integers");
 
     }
 
     @Test
-    void exponential_shouldReturnCorrectAnswer_givenValidNumbers() {
+    void test_exponential_shouldReturnCorrectAnswer_givenValidNumbers() {
         assertThat(Objects.requireNonNull(mathController.exponential("6.2").getBody()).getAnswer())
                 .isEqualTo("492.7490410932563");
     }
 
     @Test
-    void exponential_shouldThrowException_givenInvalidInput() {
+    void test_exponential_shouldThrowException_givenInvalidInput() {
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> mathController.exponential("abc"));
         assertThat(exception.getMessage()).isEqualTo("Wrong number format, inputs must be decimal numbers");
 

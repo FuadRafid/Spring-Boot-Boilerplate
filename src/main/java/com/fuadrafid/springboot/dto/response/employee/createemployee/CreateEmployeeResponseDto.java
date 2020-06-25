@@ -1,4 +1,4 @@
-package com.fuadrafid.springboot.dto.response.externalapi.createemployee;
+package com.fuadrafid.springboot.dto.response.employee.createemployee;
 
 public class CreateEmployeeResponseDto {
     private CreateEmployeeResponseData data;

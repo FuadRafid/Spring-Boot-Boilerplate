@@ -1,4 +1,4 @@
-package com.fuadrafid.springboot.dto.response.externalapi.getemployee;
+package com.fuadrafid.springboot.dto.response.employee.getemployee;
 
 public class GetEmployeeResponseDto {
     private GetEmployeeResponseData[] data;

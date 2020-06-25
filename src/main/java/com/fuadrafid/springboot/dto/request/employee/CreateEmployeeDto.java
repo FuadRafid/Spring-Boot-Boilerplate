@@ -1,9 +1,9 @@
-package com.fuadrafid.springboot.dto.request;
+package com.fuadrafid.springboot.dto.request.employee;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
-public class CreateExternalApiEmployeeDto {
+public class CreateEmployeeDto {
     @NotBlank(message = "name cannot be blank or null")
     String name;
     @Positive(message = "salary must be positive")

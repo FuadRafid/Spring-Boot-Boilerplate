@@ -1,6 +1,6 @@
 package com.fuadrafid.springboot.request;
 
-import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
+import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -15,7 +15,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CreateExternalApiEmployeeRequestDtoTest {
+class CreateEmployeeRequestDtoTest {
     private Validator validator;
 
     @BeforeAll
@@ -25,15 +25,15 @@ class CreateExternalApiEmployeeRequestDtoTest {
     }
 
     @Test
-    void testCalculationRequestDto_shouldBeInvalid_givenBlankStringAndZeroInputs() {
-        CreateExternalApiEmployeeDto requestDto = new CreateExternalApiEmployeeDto();
+    void test_CreateEmployeeRequestDtoTest_shouldBeInvalid_givenBlankStringAndZeroInputs() {
+        CreateEmployeeDto requestDto = new CreateEmployeeDto();
         requestDto.setSalary(0);
         requestDto.setAge(0);
         requestDto.setName("");
-        Set<ConstraintViolation<CreateExternalApiEmployeeDto>> violations = validator.validate(requestDto);
+        Set<ConstraintViolation<CreateEmployeeDto>> violations = validator.validate(requestDto);
         ArrayList<String> messages = new ArrayList<>();
 
-        for (ConstraintViolation<CreateExternalApiEmployeeDto> violation : violations) {
+        for (ConstraintViolation<CreateEmployeeDto> violation : violations) {
             messages.add(violation.getMessage());
         }
 
@@ -46,15 +46,15 @@ class CreateExternalApiEmployeeRequestDtoTest {
     }
 
     @Test
-    void testCalculationRequestDto_shouldBeInvalid_givenNullStringAndNegativeInputs() {
-        CreateExternalApiEmployeeDto requestDto = new CreateExternalApiEmployeeDto();
+    void test_CreateEmployeeRequestDtoTest_shouldBeInvalid_givenNullStringAndNegativeInputs() {
+        CreateEmployeeDto requestDto = new CreateEmployeeDto();
         requestDto.setSalary(-1);
         requestDto.setAge(-1);
         requestDto.setName(null);
-        Set<ConstraintViolation<CreateExternalApiEmployeeDto>> violations = validator.validate(requestDto);
+        Set<ConstraintViolation<CreateEmployeeDto>> violations = validator.validate(requestDto);
         ArrayList<String> messages = new ArrayList<>();
 
-        for (ConstraintViolation<CreateExternalApiEmployeeDto> violation : violations) {
+        for (ConstraintViolation<CreateEmployeeDto> violation : violations) {
             messages.add(violation.getMessage());
         }
 
@@ -66,15 +66,15 @@ class CreateExternalApiEmployeeRequestDtoTest {
     }
 
     @Test
-    void testCalculationRequestDto_shouldBeValid_givenValidnputs() {
-        CreateExternalApiEmployeeDto requestDto = new CreateExternalApiEmployeeDto();
+    void test_CreateEmployeeRequestDtoTest_shouldBeValid_givenValidnputs() {
+        CreateEmployeeDto requestDto = new CreateEmployeeDto();
         requestDto.setSalary(1);
         requestDto.setAge(111);
         requestDto.setName("name");
-        Set<ConstraintViolation<CreateExternalApiEmployeeDto>> violations = validator.validate(requestDto);
+        Set<ConstraintViolation<CreateEmployeeDto>> violations = validator.validate(requestDto);
         ArrayList<String> messages = new ArrayList<>();
 
-        for (ConstraintViolation<CreateExternalApiEmployeeDto> violation : violations) {
+        for (ConstraintViolation<CreateEmployeeDto> violation : violations) {
             messages.add(violation.getMessage());
         }
 

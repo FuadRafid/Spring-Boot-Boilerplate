@@ -1,4 +1,4 @@
-package com.fuadrafid.springboot.dto.response.externalapi.getemployee;
+package com.fuadrafid.springboot.dto.response.employee.getemployee;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

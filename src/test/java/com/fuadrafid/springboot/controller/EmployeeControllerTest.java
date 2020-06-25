@@ -1,8 +1,8 @@
 package com.fuadrafid.springboot.controller;
 
-import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
-import com.fuadrafid.springboot.dto.response.externalapi.createemployee.CreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.GetEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
+import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeResponseDto;
 import com.fuadrafid.springboot.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,18 +25,18 @@ class EmployeeControllerTest {
 
 
     @Test
-    void getPosts_shouldReturnCorrectPosts() {
+    void test_getEmployee_shouldReturnCorrectEmployees() {
 
         GetEmployeeResponseDto employeeData = new GetEmployeeResponseDto();
         employeeData.setStatus("success");
 
         when(service.getEmployees()).thenReturn(employeeData);
-        assertThat(employeeController.getPosts().getBody()).isEqualTo(employeeData);
+        assertThat(employeeController.getEmployees().getBody()).isEqualTo(employeeData);
     }
 
     @Test
-    void createPost_shouldReturnCorrectMessage_givenCorrectInput() {
-        final CreateExternalApiEmployeeDto mockRequest = new CreateExternalApiEmployeeDto();
+    void test_createEmployee_shouldReturnCorrectMessage_givenCorrectInput() {
+        final CreateEmployeeDto mockRequest = new CreateEmployeeDto();
         mockRequest.setName("abc");
         mockRequest.setAge(12);
         mockRequest.setSalary(111111);
@@ -46,7 +46,7 @@ class EmployeeControllerTest {
 
 
         when(service.createEmployee(any())).thenReturn(mockResponse);
-        assertThat(employeeController.createPost(mockRequest).getBody()).isEqualTo(mockResponse);
+        assertThat(employeeController.createEmployee(mockRequest).getBody()).isEqualTo(mockResponse);
 
     }
 }

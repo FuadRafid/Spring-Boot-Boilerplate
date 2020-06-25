@@ -1,4 +1,4 @@
-package com.fuadrafid.springboot.dto.response;
+package com.fuadrafid.springboot.dto.response.math;
 
 public class MathResponseDto {
     private String answer;

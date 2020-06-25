@@ -21,7 +21,7 @@ class AppTest {
     EmployeeController employeeController;
 
     @Test
-    void contextLoads() {
+    void test_contextLoads() {
         assertThat(mathController).isNotNull();
         assertThat(employeeController).isNotNull();
     }

@@ -1,8 +1,8 @@
 package com.fuadrafid.springboot.service.impl;
 
-import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
-import com.fuadrafid.springboot.dto.response.externalapi.createemployee.CreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.GetEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
+import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeResponseDto;
 import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import com.fuadrafid.springboot.service.EmployeeService;
 import com.fuadrafid.springboot.util.RestRequestUtil;
@@ -27,8 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public CreateEmployeeResponseDto createEmployee(CreateExternalApiEmployeeDto requestDto) {
-        ClientResponse response = restRequestUtil.postSync("http://dummy.restapiexample.com/api/v1/create", requestDto, CreateExternalApiEmployeeDto.class);
+    public CreateEmployeeResponseDto createEmployee(CreateEmployeeDto requestDto) {
+        ClientResponse response = restRequestUtil.postSync("http://dummy.restapiexample.com/api/v1/create", requestDto, CreateEmployeeDto.class);
         if (response.statusCode() != HttpStatus.OK)
             throw new ApplicationInternalException("Failed to create employee, error response from employee server",  HttpStatus.FAILED_DEPENDENCY);
         return response.bodyToMono(CreateEmployeeResponseDto.class).block();

@@ -1,6 +1,6 @@
 package com.fuadrafid.springboot.request;
 
-import com.fuadrafid.springboot.dto.request.DivisionRequestDto;
+import com.fuadrafid.springboot.dto.request.math.DivisionRequestDto;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -25,7 +25,7 @@ class DivisionRequestDtoTest {
     }
 
     @Test
-    void testCalculationRequestDto_shouldBeInvalid_givenBlankStringInputs() {
+    void test_DivisionRequestDtoTest_shouldBeInvalid_givenBlankStringInputs() {
         DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
         divisionRequestDto.setDividend("");
         divisionRequestDto.setDivisor("");
@@ -44,7 +44,7 @@ class DivisionRequestDtoTest {
     }
 
     @Test
-    void test_NotNumberValidator_shouldBeInvalid_givenNullInputs() {
+    void test_DivisionRequestDtoTest_shouldBeInvalid_givenNullInputs() {
         DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
         divisionRequestDto.setDividend(null);
         divisionRequestDto.setDivisor(null);
@@ -63,17 +63,13 @@ class DivisionRequestDtoTest {
     }
 
     @Test
-    void test_NotNumberValidator_shouldBeValid_givenNonBlankStringInputs() {
+    void test_DivisionRequestDtoTest_shouldBeValid_givenNonBlankStringInputs() {
         DivisionRequestDto divisionRequestDto = new DivisionRequestDto();
         divisionRequestDto.setDividend("3");
         divisionRequestDto.setDivisor("abc");
 
         Set<ConstraintViolation<DivisionRequestDto>> violations = validator.validate(divisionRequestDto);
-        ArrayList<String> messages = new ArrayList<>();
 
-        for (ConstraintViolation<DivisionRequestDto> violation : violations) {
-            messages.add(violation.getMessage());
-        }
 
         assertThat(violations.isEmpty()).isTrue();
     }

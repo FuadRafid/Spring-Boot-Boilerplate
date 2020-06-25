@@ -1,12 +1,12 @@
 package com.fuadrafid.springboot.service;
 
 
-import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
-import com.fuadrafid.springboot.dto.response.externalapi.createemployee.CreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.GetEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
+import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeResponseDto;
 
 public interface EmployeeService {
     GetEmployeeResponseDto getEmployees();
 
-    CreateEmployeeResponseDto createEmployee(CreateExternalApiEmployeeDto requestDto);
+    CreateEmployeeResponseDto createEmployee(CreateEmployeeDto requestDto);
 }

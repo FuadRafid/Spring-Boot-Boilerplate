@@ -31,7 +31,7 @@ class RestRequestUtilTest {
     }
 
     @Test
-    void postSync_shouldReturnCorrectResponse() {
+    void test_postSync_shouldReturnCorrectResponse() {
         mockWebServer.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
@@ -46,7 +46,7 @@ class RestRequestUtilTest {
     }
 
     @Test
-    void getSync_shouldReturnCorrectResponse() {
+    void test_getSync_shouldReturnCorrectResponse() {
         mockWebServer.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
@@ -61,7 +61,7 @@ class RestRequestUtilTest {
         assertThat(response.bodyToMono(String.class).block()).isEqualTo(JSON_RESPONSE);    }
 
     @Test
-    void deleteSync_shouldReturnCorrectResponse() {
+    void test_deleteSync_shouldReturnCorrectResponse() {
         mockWebServer.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
@@ -76,7 +76,7 @@ class RestRequestUtilTest {
         assertThat(response.bodyToMono(String.class).block()).isEqualTo(JSON_RESPONSE);    }
 
     @Test
-    void patchSync_shouldReturnCorrectResponse() {
+    void test_patchSync_shouldReturnCorrectResponse() {
         mockWebServer.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
@@ -91,7 +91,7 @@ class RestRequestUtilTest {
         assertThat(response.bodyToMono(String.class).block()).isEqualTo(JSON_RESPONSE);    }
 
     @Test
-    void putSync_shouldReturnCorrectResponse() {
+    void test_putSync_shouldReturnCorrectResponse() {
         mockWebServer.enqueue(
                 new MockResponse()
                         .setResponseCode(200)

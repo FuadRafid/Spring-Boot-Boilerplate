@@ -10,8 +10,8 @@ class SwaggerConfigTest {
     SwaggerConfig swaggerConfig = new SwaggerConfig();
 
     @Test
-    void calculatorApi_checkDocketIsNotNull() {
-        Docket docket = swaggerConfig.calculatorApi();
+    void test_buildSwagger_checkDocketIsNotNull() {
+        Docket docket = swaggerConfig.buildSwagger();
         assertThat(docket).isNotNull();
     }
 }

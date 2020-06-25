@@ -1,7 +1,7 @@
 package com.fuadrafid.springboot.controller;
 
-import com.fuadrafid.springboot.dto.request.DivisionRequestDto;
-import com.fuadrafid.springboot.dto.response.MathResponseDto;
+import com.fuadrafid.springboot.dto.request.math.DivisionRequestDto;
+import com.fuadrafid.springboot.dto.response.math.MathResponseDto;
 import com.fuadrafid.springboot.service.MathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

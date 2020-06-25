@@ -1,8 +1,8 @@
 package com.fuadrafid.springboot.service.impl;
 
-import com.fuadrafid.springboot.dto.request.CreateExternalApiEmployeeDto;
-import com.fuadrafid.springboot.dto.response.externalapi.createemployee.CreateEmployeeResponseDto;
-import com.fuadrafid.springboot.dto.response.externalapi.getemployee.GetEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
+import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmployeeResponseDto;
+import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeResponseDto;
 import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import com.fuadrafid.springboot.util.RestRequestUtil;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ class EmployeeServiceImplTest {
     private RestRequestUtil restRequestUtil;
 
     @Test
-    void getEmployee_givenHttpStatusOk_shouldReturnCorrectResponse() {
+    void test_getEmployee_givenHttpStatusOk_shouldReturnCorrectResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
         GetEmployeeResponseDto employeeData = new GetEmployeeResponseDto();
         employeeData.setStatus("success");
@@ -41,7 +41,7 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void getEmployee_givenHttpStatusNotOk_shouldReturnErrorResponse() {
+    void test_getEmployee_givenHttpStatusNotOk_shouldReturnErrorResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
         GetEmployeeResponseDto employeeData = new GetEmployeeResponseDto();
         employeeData.setStatus("success");
@@ -57,10 +57,10 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void createPost_givenHttpStatusNotOk_shouldReturnCorrectResponse() {
+    void test_createEmployee_givenHttpStatusNotOk_shouldReturnCorrectResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
 
-        final CreateExternalApiEmployeeDto mockRequest = new CreateExternalApiEmployeeDto();
+        final CreateEmployeeDto mockRequest = new CreateEmployeeDto();
         mockRequest.setName("abc");
         mockRequest.setAge(12);
         mockRequest.setSalary(111111);
@@ -78,10 +78,10 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void createPost_givenHTTPStatusNotOk_shouldReturnErrorResponse() {
+    void test_createEmployee_givenHTTPStatusNotOk_shouldReturnErrorResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
 
-        final CreateExternalApiEmployeeDto mockRequest = new CreateExternalApiEmployeeDto();
+        final CreateEmployeeDto mockRequest = new CreateEmployeeDto();
         mockRequest.setName("abc");
         mockRequest.setAge(12);
         mockRequest.setSalary(111111);
