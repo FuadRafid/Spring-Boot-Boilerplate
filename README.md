@@ -4,7 +4,7 @@
 
 ### What does this repo contain? ###
 
-This repo has a Spring Sample Boot Project.
+This repo has a Spring Boot Sample Project.
 
 ### Rest Endpoints ###
 The REST endpoints available for this project are:
