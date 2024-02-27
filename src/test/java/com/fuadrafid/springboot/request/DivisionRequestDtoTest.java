@@ -74,6 +74,6 @@ class DivisionRequestDtoTest {
         Set<ConstraintViolation<DivisionRequestDto>> violations = validator.validate(divisionRequestDto);
 
 
-        assertThat(violations.isEmpty()).isTrue();
+        assertThat(violations).isEmpty();
     }
 }
