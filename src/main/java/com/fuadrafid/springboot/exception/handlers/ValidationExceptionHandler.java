@@ -3,7 +3,7 @@ package com.fuadrafid.springboot.exception.handlers;
 import com.fuadrafid.springboot.exception.response.ValidationExceptionResponse;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,10 +17,9 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
+
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers,
-                                                                  HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         super.logger.error(ex.getMessage());
 
         List<String> errorMessages = ex.getBindingResult()
@@ -31,6 +30,5 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
         ValidationExceptionResponse response = new ValidationExceptionResponse(errorMessages, LocalDateTime.now());
         return new ResponseEntity<>(response, headers, status);
-
     }
 }

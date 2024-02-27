@@ -5,13 +5,13 @@ import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
 import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmployeeResponseDto;
 import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeResponseDto;
 import com.fuadrafid.springboot.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/employee")

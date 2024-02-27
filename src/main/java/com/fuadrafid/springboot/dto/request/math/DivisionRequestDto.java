@@ -1,6 +1,6 @@
 package com.fuadrafid.springboot.dto.request.math;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class DivisionRequestDto {
     @NotBlank(message = "Input cannot be blank or null")

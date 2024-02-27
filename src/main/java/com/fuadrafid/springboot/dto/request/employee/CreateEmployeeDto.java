@@ -1,7 +1,7 @@
 package com.fuadrafid.springboot.dto.request.employee;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 public class CreateEmployeeDto {
     @NotBlank(message = "name cannot be blank or null")
