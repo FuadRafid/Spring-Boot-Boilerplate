@@ -42,7 +42,7 @@ public class MathController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/exp/{input}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/exp", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MathResponseDto> exponential(@RequestPart String input) {
         String answer = service.getExponential(input);
         MathResponseDto response = new MathResponseDto(answer);
