@@ -5,6 +5,8 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=FuadRafid_Spring-Boot-Boilerplate&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=FuadRafid_Spring-Boot-Boilerplate)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=FuadRafid_Spring-Boot-Boilerplate&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=FuadRafid_Spring-Boot-Boilerplate)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=FuadRafid_Spring-Boot-Boilerplate&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=FuadRafid_Spring-Boot-Boilerplate)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=FuadRafid_Spring-Boot-Boilerplate&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=FuadRafid_Spring-Boot-Boilerplate)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=FuadRafid_Spring-Boot-Boilerplate&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=FuadRafid_Spring-Boot-Boilerplate)
 ### What does this repo contain? ###
 
 This repo has a Spring Boot Sample Project.
