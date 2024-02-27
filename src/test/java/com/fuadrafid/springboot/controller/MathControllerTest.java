@@ -17,11 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 class MathControllerTest {
+
     @InjectMocks
-    MathController mathController = new MathController();
+    MathController mathController;
 
     @Spy
     MathService service = new MathServiceImpl();
+
 
 
     @Test

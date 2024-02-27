@@ -6,7 +6,6 @@ import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeRes
 import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import com.fuadrafid.springboot.service.EmployeeService;
 import com.fuadrafid.springboot.util.RestRequestUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -14,8 +13,11 @@ import org.springframework.web.reactive.function.client.ClientResponse;
 @Service(value = "defaultEmployeeService")
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
-    RestRequestUtil restRequestUtil;
+    final RestRequestUtil restRequestUtil;
+
+    public EmployeeServiceImpl(RestRequestUtil restRequestUtil) {
+        this.restRequestUtil = restRequestUtil;
+    }
 
     @Override
     public GetEmployeeResponseDto getEmployees() {
@@ -30,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public CreateEmployeeResponseDto createEmployee(CreateEmployeeDto requestDto) {
         ClientResponse response = restRequestUtil.postSync("http://dummy.restapiexample.com/api/v1/create", requestDto, CreateEmployeeDto.class);
         if (response.statusCode() != HttpStatus.OK)
-            throw new ApplicationInternalException("Failed to create employee, error response from employee server",  HttpStatus.FAILED_DEPENDENCY);
+            throw new ApplicationInternalException("Failed to create employee, error response from employee server", HttpStatus.FAILED_DEPENDENCY);
         return response.bodyToMono(CreateEmployeeResponseDto.class).block();
     }
 }

@@ -1,54 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE project [
-        <!ELEMENT project (modelVersion|parent|groupId|artifactId|version|properties|dependencies|build|distributionManagement)*>
-        <!ATTLIST project
-                xmlns CDATA #REQUIRED
-                xmlns:xsi CDATA #REQUIRED
-                xsi:schemaLocation CDATA #REQUIRED>
-        <!ELEMENT modelVersion (#PCDATA)>
-        <!ELEMENT parent (groupId|artifactId|version)*>
-        <!ELEMENT groupId (#PCDATA)>
-        <!ELEMENT artifactId (#PCDATA)>
-        <!ELEMENT version (#PCDATA)>
-        <!ELEMENT properties (java.version|repository.snapshot.url|repository.url|artifact.repo.url|okhttp3.version|sonar.organization|sonar.host.url)*>
-        <!ELEMENT java.version (#PCDATA)>
-        <!ELEMENT repository.snapshot.url (#PCDATA)>
-        <!ELEMENT repository.url (#PCDATA)>
-        <!ELEMENT artifact.repo.url (#PCDATA)>
-        <!ELEMENT okhttp3.version (#PCDATA)>
-        <!ELEMENT sonar.organization (#PCDATA)>
-        <!ELEMENT sonar.host.url (#PCDATA)>
-        <!ELEMENT dependencies (dependency)*>
-        <!ELEMENT dependency (groupId|artifactId|scope|version)*>
-        <!ELEMENT scope (#PCDATA)>
-        <!ELEMENT build (resources|plugins)*>
-        <!ELEMENT resources (resource)*>
-        <!ELEMENT resource (directory|filtering)*>
-        <!ELEMENT directory (#PCDATA)>
-        <!ELEMENT filtering (#PCDATA)>
-        <!ELEMENT plugins (plugin)*>
-        <!ELEMENT plugin (groupId|artifactId|version|executions|configuration)*>
-        <!ELEMENT executions (execution)*>
-        <!ELEMENT execution (id|goals)*>
-        <!ELEMENT id (#PCDATA)>
-        <!ELEMENT goals (goal)*>
-        <!ELEMENT goal (#PCDATA)>
-        <!ELEMENT configuration (enableSshAgent|flowInitContext|pushReleases|pushHotfixes)*>
-        <!ELEMENT enableSshAgent (#PCDATA)>
-        <!ELEMENT flowInitContext (masterBranchName|developBranchName|featureBranchPrefix|releaseBranchPrefix|hotfixBranchPrefix|versionTagPrefix)*>
-        <!ELEMENT masterBranchName (#PCDATA)>
-        <!ELEMENT developBranchName (#PCDATA)>
-        <!ELEMENT featureBranchPrefix (#PCDATA)>
-        <!ELEMENT releaseBranchPrefix (#PCDATA)>
-        <!ELEMENT hotfixBranchPrefix (#PCDATA)>
-        <!ELEMENT versionTagPrefix (#PCDATA)>
-        <!ELEMENT pushReleases (#PCDATA)>
-        <!ELEMENT pushHotfixes (#PCDATA)>
-        <!ELEMENT distributionManagement (snapshotRepository|repository)*>
-        <!ELEMENT snapshotRepository (id|url)*>
-        <!ELEMENT url (#PCDATA)>
-        <!ELEMENT repository (id|url)*>
-        ]>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -70,6 +20,7 @@
             ${repository.url}com/fuadrafid/${project.artifactId}/${project.version}/${project.artifactId}-${project.version}.${project.packaging}
         </artifact.repo.url>
         <okhttp3.version>4.12.0</okhttp3.version>
+        <sonar.projectKey>FuadRafid_Spring-Boot-Sample</sonar.projectKey>
         <sonar.organization>fuadrafid</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
@@ -144,7 +95,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.11</version>
+                <version>0.8.5</version>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -190,6 +141,14 @@
                     </flowInitContext>
                     <pushReleases>true</pushReleases>
                     <pushHotfixes>true</pushHotfixes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
         </plugins>

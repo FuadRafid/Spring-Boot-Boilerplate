@@ -15,8 +15,11 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 @Component
 public class RestRequestUtil {
-    @Autowired
-    private WebClient.Builder webClientBuilder;
+    private final WebClient.Builder webClientBuilder;
+
+    public RestRequestUtil(WebClient.Builder webClientBuilder) {
+        this.webClientBuilder = webClientBuilder;
+    }
 
     public <T> ClientResponse postSync(String url, Object reqDto, Class<T> reqDtoClass) {
         return webClientBuilder

@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
@@ -26,7 +25,7 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
                 .getFieldErrors()
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.toList());
+                .toList();
 
         ValidationExceptionResponse response = new ValidationExceptionResponse(errorMessages, LocalDateTime.now());
         return new ResponseEntity<>(response, headers, status);

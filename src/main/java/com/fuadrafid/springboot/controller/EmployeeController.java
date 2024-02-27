@@ -6,7 +6,6 @@ import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmplo
 import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeResponseDto;
 import com.fuadrafid.springboot.service.EmployeeService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +16,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/employee")
 public class EmployeeController {
 
-    @Autowired
-    @Qualifier(value = "defaultEmployeeService")
-    private EmployeeService service;
+    private final EmployeeService service;
+
+    public EmployeeController(@Qualifier(value = "defaultEmployeeService") EmployeeService service) {
+        this.service = service;
+    }
 
 
     @GetMapping(value = "/")

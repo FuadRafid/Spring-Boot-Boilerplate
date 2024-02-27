@@ -3,22 +3,22 @@ package com.fuadrafid.springboot.controller;
 import com.fuadrafid.springboot.dto.request.math.DivisionRequestDto;
 import com.fuadrafid.springboot.dto.response.math.MathResponseDto;
 import com.fuadrafid.springboot.service.MathService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping(path = "/math")
 public class MathController {
 
-    @Autowired
-    @Qualifier(value = "defaultMathService")
-    private MathService service;
+    private final MathService service;
+
+    public MathController(@Qualifier(value = "defaultMathService") MathService service) {
+        this.service = service;
+    }
 
 
     @GetMapping(value = "/power/{number}/{power}")
