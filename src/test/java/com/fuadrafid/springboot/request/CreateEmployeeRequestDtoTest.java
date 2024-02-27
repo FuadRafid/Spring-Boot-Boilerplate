@@ -1,14 +1,14 @@
 package com.fuadrafid.springboot.request;
 
 import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -37,11 +37,13 @@ class CreateEmployeeRequestDtoTest {
             messages.add(violation.getMessage());
         }
 
-        assertThat(violations).isNotEmpty();
-        assertThat(violations).hasSize(3);
-        assertThat(messages).contains("name cannot be blank or null");
-        assertThat(messages).contains("salary must be positive");
-        assertThat(messages).contains("age must be positive");
+        assertThat(violations)
+                .isNotEmpty()
+                .hasSize(3);
+        assertThat(messages)
+                .contains("name cannot be blank or null")
+                .contains("salary must be positive")
+                .contains("age must be positive");
 
     }
 
@@ -58,11 +60,12 @@ class CreateEmployeeRequestDtoTest {
             messages.add(violation.getMessage());
         }
 
-        assertThat(violations).isNotEmpty();
-        assertThat(violations).hasSize(3);
-        assertThat(messages).contains("name cannot be blank or null");
-        assertThat(messages).contains("salary must be positive");
-        assertThat(messages).contains("age must be positive");
+        assertThat(violations)
+                .isNotEmpty()
+                .hasSize(3);
+        assertThat(messages).contains("name cannot be blank or null")
+                .contains("salary must be positive")
+                .contains("age must be positive");
     }
 
     @Test
