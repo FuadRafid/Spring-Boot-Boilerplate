@@ -1,6 +1,6 @@
 # Spring Boot Sample #
 
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=FuadRafid_Spring-Boot-Sample&metric=alert_status)](https://sonarcloud.io/dashboard?id=FuadRafid_Spring-Boot-Sample)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=FuadRafid_Spring-Boot-Boilerplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=FuadRafid_Spring-Boot-Boilerplate)
 
 ### What does this repo contain? ###
 
