@@ -37,11 +37,11 @@ class CreateEmployeeRequestDtoTest {
             messages.add(violation.getMessage());
         }
 
-        assertThat(violations.isEmpty()).isFalse();
-        assertThat(violations.size()).isEqualTo(3);
-        assertThat(messages.contains("name cannot be blank or null")).isTrue();
-        assertThat(messages.contains("salary must be positive")).isTrue();
-        assertThat(messages.contains("age must be positive")).isTrue();
+        assertThat(violations).isNotEmpty();
+        assertThat(violations).hasSize(3);
+        assertThat(messages).contains("name cannot be blank or null");
+        assertThat(messages).contains("salary must be positive");
+        assertThat(messages).contains("age must be positive");
 
     }
 
@@ -58,11 +58,11 @@ class CreateEmployeeRequestDtoTest {
             messages.add(violation.getMessage());
         }
 
-        assertThat(violations.isEmpty()).isFalse();
-        assertThat(violations.size()).isEqualTo(3);
-        assertThat(messages.contains("name cannot be blank or null")).isTrue();
-        assertThat(messages.contains("salary must be positive")).isTrue();
-        assertThat(messages.contains("age must be positive")).isTrue();
+        assertThat(violations).isNotEmpty();
+        assertThat(violations).hasSize(3);
+        assertThat(messages).contains("name cannot be blank or null");
+        assertThat(messages).contains("salary must be positive");
+        assertThat(messages).contains("age must be positive");
     }
 
     @Test
@@ -78,7 +78,7 @@ class CreateEmployeeRequestDtoTest {
             messages.add(violation.getMessage());
         }
 
-        assertThat(violations.isEmpty()).isTrue();
+        assertThat(violations).isEmpty();
     }
 
 }

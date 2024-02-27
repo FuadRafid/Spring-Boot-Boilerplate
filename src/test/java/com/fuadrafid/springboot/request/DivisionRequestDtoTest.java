@@ -37,8 +37,8 @@ class DivisionRequestDtoTest {
             messages.add(violation.getMessage());
         }
 
-        assertThat(violations.isEmpty()).isFalse();
-        assertThat(violations.size()).isEqualTo(2);
+        assertThat(violations).isNotEmpty();
+        assertThat(violations).hasSize(2);
         assertThat(messages.get(0)).isEqualTo("Input cannot be blank or null");
         assertThat(messages.get(1)).isEqualTo("Input cannot be blank or null");
     }
@@ -56,8 +56,8 @@ class DivisionRequestDtoTest {
             messages.add(violation.getMessage());
         }
 
-        assertThat(violations.isEmpty()).isFalse();
-        assertThat(violations.size()).isEqualTo(2);
+        assertThat(violations).isNotEmpty();
+        assertThat(violations).hasSize(2);
         assertThat(messages.get(0)).isEqualTo("Input cannot be blank or null");
         assertThat(messages.get(1)).isEqualTo("Input cannot be blank or null");
     }
