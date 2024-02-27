@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <repository.snapshot.url>http://localhost:8081/repository/maven-snapshots/</repository.snapshot.url>
         <repository.url>http://localhost:8081/repository/maven-releases/</repository.url>
         <artifact.repo.url>
