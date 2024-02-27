@@ -1,34 +1,26 @@
-
-name: Build
+name: Java CI
 
 on:
   push:
     branches:
       - master
+      - sonarcloud
   pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - master
-  workflow_dispatch:
 
 jobs:
   build:
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        java: [17]
-        os: [ubuntu-latest]
-        distribution: [temurin]
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Maven Build with SonarCloud
-        uses: wcm-io-devops/github-action-maven-build-sonar@v1
+      - uses: actions/checkout@v2
         with:
-          os: ${{ matrix.os }}
-          java-version: ${{ matrix.java }}
-          maven-executable: ./mvnw
-          sonar-run-on-os: ubuntu-latest
-          sonar-run-on-java-version: 11
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Scan with SonarCloud
+        run: mvn verify sonar:sonar -Dsonar.login=${{ secrets.SONARCLOUD }}
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            JAVA_HOME: ''
