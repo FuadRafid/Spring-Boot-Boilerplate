@@ -75,12 +75,16 @@ class StudentServiceTest {
         List<Student> students = getData();
         Mockito.when(studentRepository.findAll()).thenReturn(students);
         assertThat(studentService.getAllStudents()).isEqualTo(students);
+        Mockito.verify(studentRepository, Mockito.times(1)).findAll();
+
     }
 
     @Test
     void test__getAllStudents__shouldReturnEmpty__givenNoStudentsPresent() {
         Mockito.when(studentRepository.findAll()).thenReturn(new ArrayList<>());
         assertThat(studentService.getAllStudents()).isEmpty();
+        Mockito.verify(studentRepository, Mockito.times(1)).findAll();
+
     }
 
     @Test
@@ -88,6 +92,8 @@ class StudentServiceTest {
         Mockito.when(studentRepository.findAll()).thenThrow(getException("Bad connection"));
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.getAllStudents());
         assertThat(exception.getMessage()).isEqualTo("Failed to get students");
+        Mockito.verify(studentRepository, Mockito.times(1)).findAll();
+
     }
 
 
@@ -97,6 +103,7 @@ class StudentServiceTest {
         Student studentJohn = students.get(0);
         Mockito.when(studentRepository.findById(anyString())).thenReturn(Optional.ofNullable(studentJohn));
         assertThat(studentService.getStudentById("1")).isEqualTo(studentJohn);
+        Mockito.verify(studentRepository, Mockito.times(1)).findById("1");
     }
 
 
@@ -105,6 +112,8 @@ class StudentServiceTest {
         Mockito.when(studentRepository.findById(anyString())).thenReturn(Optional.empty());
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.getStudentById("1"));
         assertThat(exception.getMessage()).isEqualTo("Student with id: 1 does not exist");
+        Mockito.verify(studentRepository, Mockito.times(1)).findById("1");
+
     }
 
     @Test
@@ -112,12 +121,14 @@ class StudentServiceTest {
         Mockito.when(studentRepository.findById(anyString())).thenThrow(getException("Bad connection"));
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.getStudentById("1"));
         assertThat(exception.getMessage()).isEqualTo("Failed to get student with id: 1");
+        Mockito.verify(studentRepository, Mockito.times(1)).findById("1");
     }
 
     @Test
     void test__deleteStudent__shouldDeleteStudent__givenNoError() {
         Mockito.doNothing().when(studentRepository).deleteById(anyString());
         studentService.deleteStudent("1");
+        Mockito.verify(studentRepository, Mockito.times(1)).deleteById("1");
     }
 
     @Test
@@ -125,6 +136,7 @@ class StudentServiceTest {
         Mockito.doThrow(getException("Bad Connection")).when(studentRepository).deleteById(anyString());
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.deleteStudent("1"));
         assertThat(exception.getMessage()).isEqualTo("Failed to delete student with id: 1");
+        Mockito.verify(studentRepository, Mockito.times(1)).deleteById("1");
     }
 
 
@@ -138,6 +150,8 @@ class StudentServiceTest {
         assertThat(resultStudent.getStudentClass()).isEqualTo("Grade 6");
         assertThat(resultStudent.getProfileImage()).isEqualTo("data/image1");
         assertThat(resultStudent.getStudentAge()).isEqualTo(12);
+        Mockito.verify(studentRepository, Mockito.times(1)).save(student);
+
     }
 
 
@@ -147,6 +161,8 @@ class StudentServiceTest {
         Mockito.doThrow(getException("Bad Connection")).when(studentRepository).save(any(Student.class));
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.createStudent(student));
         assertThat(exception.getMessage()).isEqualTo("Failed to create student with id: 1");
+        Mockito.verify(studentRepository, Mockito.times(1)).save(student);
+
     }
 
 
@@ -162,6 +178,8 @@ class StudentServiceTest {
         assertThat(resultStudent.getStudentClass()).isEqualTo("Grade 6");
         assertThat(resultStudent.getProfileImage()).isEqualTo("data/image1");
         assertThat(resultStudent.getStudentAge()).isEqualTo(14);
+        Mockito.verify(studentRepository, Mockito.times(1)).save(student);
+
     }
 
 
@@ -172,6 +190,7 @@ class StudentServiceTest {
         Mockito.when(studentRepository.findById(anyString())).thenReturn(Optional.empty());
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.updateStudent(student));
         assertThat(exception.getMessage()).isEqualTo("Student with id: 1 does not exist");
+        Mockito.verify(studentRepository, Mockito.times(1)).findById("1");
     }
 
 
@@ -182,11 +201,15 @@ class StudentServiceTest {
         Mockito.when(studentRepository.findById(anyString())).thenThrow(getException("Bad Connection"));
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.updateStudent(student));
         assertThat(exception.getMessage()).isEqualTo("Failed to update student with id: 1");
+        Mockito.verify(studentRepository, Mockito.times(1)).findById("1");
 
+        resetMocks();
 
+        Mockito.when(studentRepository.findById(anyString())).thenReturn(Optional.of(student));
         Mockito.doThrow(getException("Bad Connection")).when(studentRepository).save(any(Student.class));
         exception = assertThrows(ApplicationInternalException.class, () -> studentService.updateStudent(student));
         assertThat(exception.getMessage()).isEqualTo("Failed to update student with id: 1");
+        Mockito.verify(studentRepository, Mockito.times(1)).save(student);
 
 
     }
