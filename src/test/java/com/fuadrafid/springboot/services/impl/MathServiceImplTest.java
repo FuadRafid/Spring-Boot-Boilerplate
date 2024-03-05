@@ -1,4 +1,4 @@
-package com.fuadrafid.springboot.service.impl;
+package com.fuadrafid.springboot.services.impl;
 
 import com.fuadrafid.springboot.exception.ApplicationInternalException;
 import org.junit.jupiter.api.Test;

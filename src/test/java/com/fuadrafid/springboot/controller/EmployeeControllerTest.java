@@ -3,7 +3,7 @@ package com.fuadrafid.springboot.controller;
 import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
 import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmployeeResponseDto;
 import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeResponseDto;
-import com.fuadrafid.springboot.service.EmployeeService;
+import com.fuadrafid.springboot.services.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,10 +19,8 @@ class EmployeeControllerTest {
 
     @InjectMocks
     EmployeeController employeeController;
-
     @Mock
     EmployeeService service;
-
 
     @Test
     void test_getEmployee_shouldReturnCorrectEmployees() {

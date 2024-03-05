@@ -1,4 +1,4 @@
-package com.fuadrafid.springboot.service.impl;
+package com.fuadrafid.springboot.services.impl;
 
 import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
 import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmployeeResponseDto;
@@ -43,9 +43,6 @@ class EmployeeServiceImplTest {
     @Test
     void test_getEmployee_givenHttpStatusNotOk_shouldReturnErrorResponse() {
         ClientResponse clientResponse = mock(ClientResponse.class, RETURNS_DEEP_STUBS);
-        GetEmployeeResponseDto employeeData = new GetEmployeeResponseDto();
-        employeeData.setStatus("success");
-
         when(clientResponse.statusCode()).thenReturn(HttpStatus.INTERNAL_SERVER_ERROR);
 
         when(restRequestUtil.getSync(any())).thenReturn(clientResponse);

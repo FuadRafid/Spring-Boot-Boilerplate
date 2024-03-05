@@ -2,8 +2,8 @@ package com.fuadrafid.springboot.controller;
 
 import com.fuadrafid.springboot.dto.request.math.DivisionRequestDto;
 import com.fuadrafid.springboot.exception.ApplicationInternalException;
-import com.fuadrafid.springboot.service.MathService;
-import com.fuadrafid.springboot.service.impl.MathServiceImpl;
+import com.fuadrafid.springboot.services.MathService;
+import com.fuadrafid.springboot.services.impl.MathServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,11 +20,8 @@ class MathControllerTest {
 
     @InjectMocks
     MathController mathController;
-
     @Spy
     MathService service = new MathServiceImpl();
-
-
 
     @Test
     void test_divideNumbers_shouldReturnCorrectAnswer_givenValidNumbers() {

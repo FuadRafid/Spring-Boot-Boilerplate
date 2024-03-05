@@ -2,7 +2,7 @@ package com.fuadrafid.springboot.controller;
 
 import com.fuadrafid.springboot.dto.request.math.DivisionRequestDto;
 import com.fuadrafid.springboot.dto.response.math.MathResponseDto;
-import com.fuadrafid.springboot.service.MathService;
+import com.fuadrafid.springboot.services.MathService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.fuadrafid.springboot.service;
+package com.fuadrafid.springboot.services;
 
 
 public interface MathService {
