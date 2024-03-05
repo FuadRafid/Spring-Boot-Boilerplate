@@ -3,7 +3,7 @@ package com.fuadrafid.springboot.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "default")
 public class ApplicationProperties {
 
     @Value("${spring.application.name}")
