@@ -4,7 +4,7 @@ package com.fuadrafid.springboot.controller;
 import com.fuadrafid.springboot.dto.request.employee.CreateEmployeeDto;
 import com.fuadrafid.springboot.dto.response.employee.createemployee.CreateEmployeeResponseDto;
 import com.fuadrafid.springboot.dto.response.employee.getemployee.GetEmployeeResponseDto;
-import com.fuadrafid.springboot.service.EmployeeService;
+import com.fuadrafid.springboot.services.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

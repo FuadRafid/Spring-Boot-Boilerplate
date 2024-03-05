@@ -1,8 +1,8 @@
-package com.fuadrafid.springboot.service.impl;
+package com.fuadrafid.springboot.services.impl;
 
 
 import com.fuadrafid.springboot.exception.ApplicationInternalException;
-import com.fuadrafid.springboot.service.MathService;
+import com.fuadrafid.springboot.services.MathService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
