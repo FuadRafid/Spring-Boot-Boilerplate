@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 
 @ExtendWith(MockitoExtension.class)
-public class StudentServiceTest {
+class StudentServiceTest {
 
     @InjectMocks
     StudentServiceImpl studentService;
@@ -66,25 +66,25 @@ public class StudentServiceTest {
 
 
     @AfterEach
-    public void resetMocks() {
+    void resetMocks() {
         Mockito.reset(studentRepository);
     }
 
     @Test
-    public void test__getAllStudents__shouldReturnAllStudents__givenStudentsIsPresent() {
+    void test__getAllStudents__shouldReturnAllStudents__givenStudentsIsPresent() {
         List<Student> students = getData();
         Mockito.when(studentRepository.findAll()).thenReturn(students);
         assertThat(studentService.getAllStudents()).isEqualTo(students);
     }
 
     @Test
-    public void test__getAllStudents__shouldReturnEmpty__givenNoStudentsPresent() {
+    void test__getAllStudents__shouldReturnEmpty__givenNoStudentsPresent() {
         Mockito.when(studentRepository.findAll()).thenReturn(new ArrayList<>());
         assertThat(studentService.getAllStudents()).isEmpty();
     }
 
     @Test
-    public void test__getAllStudents__shouldThrowException__givenRepositoryThrowsError() {
+    void test__getAllStudents__shouldThrowException__givenRepositoryThrowsError() {
         Mockito.when(studentRepository.findAll()).thenThrow(getException("Bad connection"));
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.getAllStudents());
         assertThat(exception.getMessage()).isEqualTo("Failed to get students");
@@ -92,7 +92,7 @@ public class StudentServiceTest {
 
 
     @Test
-    public void test__getStudentByID__shouldReturnCorrectStudent__givenIdIsPresent() {
+    void test__getStudentByID__shouldReturnCorrectStudent__givenIdIsPresent() {
         List<Student> students = getData();
         Student studentJohn = students.get(0);
         Mockito.when(studentRepository.findById(anyString())).thenReturn(Optional.ofNullable(studentJohn));
@@ -101,27 +101,27 @@ public class StudentServiceTest {
 
 
     @Test
-    public void test__getStudentByID__shouldThrowError__givenIdIsNotPresent() {
+    void test__getStudentByID__shouldThrowError__givenIdIsNotPresent() {
         Mockito.when(studentRepository.findById(anyString())).thenReturn(Optional.empty());
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.getStudentById("1"));
         assertThat(exception.getMessage()).isEqualTo("Student with id: 1 does not exist");
     }
 
     @Test
-    public void test__getStudentByID__shouldThrowError__givenRepositoryThrowsError() {
+    void test__getStudentByID__shouldThrowError__givenRepositoryThrowsError() {
         Mockito.when(studentRepository.findById(anyString())).thenThrow(getException("Bad connection"));
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.getStudentById("1"));
         assertThat(exception.getMessage()).isEqualTo("Failed to get student with id: 1");
     }
 
     @Test
-    public void test__deleteStudent__shouldDeleteStudent__givenNoError() {
+    void test__deleteStudent__shouldDeleteStudent__givenNoError() {
         Mockito.doNothing().when(studentRepository).deleteById(anyString());
         studentService.deleteStudent("1");
     }
 
     @Test
-    public void test__deleteStudent__shouldThrowError__givenErrorFromRepository() {
+    void test__deleteStudent__shouldThrowError__givenErrorFromRepository() {
         Mockito.doThrow(getException("Bad Connection")).when(studentRepository).deleteById(anyString());
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.deleteStudent("1"));
         assertThat(exception.getMessage()).isEqualTo("Failed to delete student with id: 1");
@@ -129,7 +129,7 @@ public class StudentServiceTest {
 
 
     @Test
-    public void test__createStudent__shouldCreateStudent__givenNoError() {
+    void test__createStudent__shouldCreateStudent__givenNoError() {
         Student student = getData().get(0);
         Mockito.when(studentRepository.save(any(Student.class))).thenReturn(student);
         Student resultStudent = studentService.createStudent(student);
@@ -142,7 +142,7 @@ public class StudentServiceTest {
 
 
     @Test
-    public void test__createStudent__shouldThrowError__givenErrorFromRepository() {
+    void test__createStudent__shouldThrowError__givenErrorFromRepository() {
         Student student = getData().get(0);
         Mockito.doThrow(getException("Bad Connection")).when(studentRepository).save(any(Student.class));
         ApplicationInternalException exception = assertThrows(ApplicationInternalException.class, () -> studentService.createStudent(student));
@@ -151,7 +151,7 @@ public class StudentServiceTest {
 
 
     @Test
-    public void test__updateStudent__shouldUpdateStudent__givenNoError() {
+    void test__updateStudent__shouldUpdateStudent__givenNoError() {
         Student student = getData().get(0);
         student.setStudentAge(14);
         Mockito.when(studentRepository.findById("1")).thenReturn(Optional.of(student));
@@ -166,7 +166,7 @@ public class StudentServiceTest {
 
 
     @Test
-    public void test__updateStudent__shouldThrowError__givenStudentNotPresent() {
+    void test__updateStudent__shouldThrowError__givenStudentNotPresent() {
         Student student = getData().get(0);
         student.setStudentAge(14);
         Mockito.when(studentRepository.findById(anyString())).thenReturn(Optional.empty());
@@ -176,7 +176,7 @@ public class StudentServiceTest {
 
 
     @Test
-    public void test__updateStudent__shouldThrowError__givenErrorFromRepository() {
+    void test__updateStudent__shouldThrowError__givenErrorFromRepository() {
         Student student = getData().get(0);
         student.setStudentAge(14);
         Mockito.when(studentRepository.findById(anyString())).thenThrow(getException("Bad Connection"));
